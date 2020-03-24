@@ -1,0 +1,599 @@
+@model UpperityProfileManagement.UpperitySDK.GetEntityInformationResponse
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upperity Entity Profile</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="~/Dashboard/assets/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <link href="~/Dashboard/assets/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Dashboard/assets/dash-styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/Dashboard/assets/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+
+    <div id="profile">
+        <div class="container">
+            <div class="row">
+                <div id="logo" class="col-lg-12 col-sm-12"><img src="/dashboard/assets/U_OrangePetit.png"><h4>Upperity Entity Profile (@Model.entityInformation.CompanyName)</h4></div>
+            </div>
+            <div style="height:30px;"><a href="/Account/LogOut" style="float:right;">Log Out</a></div>  
+            <div id="nav">
+                    <ul>
+                        <li><a  href="/Account/UpperityUserProfile">Personal Profile</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                        <li><a class="active" href="/Account/ManageEntity">Entity</a></li>
+                        <li><a href="/Account/RenderCreateEntity">Create Entity</a></li>
+                        <li><a href="/Account/RenderPartnerApiKeyList">Become a partner</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                    </ul>
+                </div>
+            <!--TAB1-->
+            <!--Section1-->
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#general">General Information</a></li>
+                <li><a href="/Account/UpperityEntityUserManagement">User Management</a></li>
+                @if (Model.isCurrentUserAdministrator)
+                {
+                <li><a href="/Account/RenderBusinessPartnerApiKeyList">Become a business partner</a></li>
+                }
+            </ul>
+            <div class="tab-content">
+                <!--Section1-->
+                <div id="general" class="tab-pane active">
+                    <form id="genral-info" class="form" action="/Account/UpdateEntityProfile" method="post">
+                    <div class="row profile-info">
+                    <!--Line0-->
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group">
+                            <label for="currenttrustlevel" class="text-info">Current Trust Level : @Model.entityInformation.EntityTrustLevel</label>
+                           </div>
+                           @if (Model.isCurrentUserAdministrator)
+                           {
+                               if (!Model.entityInformation.isInVerificationProcess)
+                               {
+                                    <div class="col-12" style="text-align: right;"><a href="/Account/trustlevelentity" class="btn btn-orange2 btn-info btn-sm text-right">Upgrade My Trust Level</a></div>
+                               }
+                               else
+                               {
+                                    <div class="col-12" style="text-align: right;"><a class="btn btn-orange2 btn-info btn-lg text-center" href="#">Pending Review</a></div>
+                               }
+                           }
+                          
+                        </div>
+                        
+                    </div>
+                        <div class="col-lg-12 col-sm-12">
+                            <!--Line1-->
+                            <div class="row">
+                                <div class="col-lg-10 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="entityname" class="text-info">Entity Name</label><br>
+                                    <input type="text" name="entityname" id="entityname" class="form-control" value="@Model.entityInformation.CompanyName">
+                                   </div>
+                                </div>
+                               <div class="col-lg-2 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="language" class="text-info">Language</label><br>
+                                        <select class="mdb-select md-form" name="language">
+                                          @switch (Model.entityInformation.ISOLanguageId)
+                                          {
+                                              case 1033:
+                                                  <option value="1033">English</option>
+                                                  <option value="1036" selected>French</option>
+                                                  break;
+                                              default:
+                                                  <option value="1033" selected>English</option>
+                                                  <option value="1036">French</option>
+                                                  break;
+                                          }
+                                          
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END Line1-->
+                            <!--Line2-->
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12">
+                                   <br /> <label for="country" class="text-info">Entity Type</label><br>
+                                <select class="" id="selectedEntityType" name="selectedEntityType" onchange="setRequiredDocument();">
+                                    @foreach (var entityType in Model.entityInformation.entityTypeList)
+                                    {
+                                        if (Model.entityInformation.EntityType == entityType.entityTypeId.ToString())
+                                        { 
+                                            <option value="@entityType.entityTypeId" selected>@entityType.entityTypeName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@entityType.entityTypeId">@entityType.entityTypeName</option>
+                                        }
+                                    }
+                                </select>
+                                </div>
+                                <div class="col-lg-4 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="entityjuridiction" class="text-info">Entity jurisdiction</label><br>
+                                    <input type="text" name="entityjuridiction" id="entityjuridiction" class="form-control" value="@Model.entityInformation.EntityJurisdiction">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="date-incorporation" class="text-info">Date of incorporation</label><br>
+                                    <input type='text' class="form-control" name="incorporationDate" id='datetimepicker1' value="@Model.entityInformation.DateOfIncorporation.ToShortDateString()" /><i class="fa fa-calendar uppercalendar" ></i>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!--END Line2-->                    
+                            <!--Line3-->
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="buildingname" class="text-info">Building Name</label><br>
+                                    <input type="text" name="buildingname" id="buildingname" class="form-control" value="@Model.entityInformation.AdressList[0].BuildingName">
+                                   </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="buildingnumber" class="text-info">Building Number</label><br>
+                                    <input type="text" name="buildingnumber" id="buildingnumber" class="form-control" value="@Model.entityInformation.AdressList[0].BuildingNumber">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="streetname" class="text-info">Street Name</label><br>
+                                    <input type="text" name="streetname" id="streetname" class="form-control" value="@Model.entityInformation.AdressList[0].StreetName">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="unitnumber" class="text-info">Unit Number (e.g. Office/Suite/Floor)</label</label><br>
+                                    <input type="text" name="unitnumber" id="unitnumber" class="form-control" value="@Model.entityInformation.AdressList[0].UnitNumber">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END Line3-->   
+                            <!--Line4-->
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="pobox" class="text-info">PO Box</label><br>
+                                    <input type="text" name="pobox" id="pobox" class="form-control" value="@Model.entityInformation.AdressList[0].POBox">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="country" class="text-info">Country</label><br>
+                                        <select class="mdb-select md-form" name="entitycountry" id="entitycountry" onchange="getStateList();">
+                                          <option value="" disabled selected>---</option>
+                                        </select>
+                                     </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="province" class="text-info">Province/State</label><br>
+                                        <select class="mdb-select md-form" name="province" id="province">
+                                          <option value="" disabled selected>---</option>
+                                         </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="city" class="text-info">City</label><br>
+                                    <input type="text" name="city" id="city" class="form-control" value="@Model.entityInformation.AdressList[0].City">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!--END Line4-->
+                            <!--Line5-->
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="suburb" class="text-info">Suburb</label><br>
+                                    <input type="text" name="suburb" id="suburb" class="form-control" value="@Model.entityInformation.AdressList[0].SubUrb">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="postalcode" class="text-info">Postal / ZIP Code</label><br>
+                                    <input type="text" name="postalcode" id="postalcode" class="form-control" value="@Model.entityInformation.AdressList[0].PostalOrZipCode">
+                                    </div>
+                                </div>
+                                 <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="phonenumber" class="text-info">Phone Number</label><br>
+                                    @if (Model.entityInformation.PhoneNumberList.Any())
+                                    {
+                                        <input type="text" name="phonenumber" id="phonenumber" class="form-control" value="@Model.entityInformation.PhoneNumberList[0].phoneNumber">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" name="phonenumber" id="phonenumber" class="form-control" value="">
+                                    }
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END Line5-->
+                        </div>
+                        <div class="form-group col-12 text-right">
+                        @if (Model.isCurrentUserAbleToUpdateProfile)
+                        {
+                            <input type="submit" name="submit" class="btn btn-dark btn-info btn-lg text-right" value="Cancel">
+                            <input type="submit" name="submit" class="btn btn-orange btn-info btn-lg text-right" value="Save">
+                        }
+                        </div>
+                    </form>
+                    </div>
+                     <!--Section2-->
+                    
+
+            <!--END section2-->
+                    
+                </div>
+                <!--END section1-->
+
+                <!--AJOUT-->
+                <!--TAB 2-->
+                <div id="user" class="tab-pane fade">
+                    <div class="profile-info">
+                        <div class="row col-12"><h6>Addition of multiple users</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor pellentesque mi, non placerat erat condimentum at. Cras maximus luctus tellus, ac suscipit est auctor sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla lectus nulla, vehicula quis congue quis, tincidunt non eros. In sed tincidunt sem. Aliquam vitae finibus lectus. Nunc dolor tortor, commodo ut eros ac, sollicitudin mollis odio.
+
+                            Suspendisse sagittis aliquet felis, ac ornare lectus malesuada sit amet. Praesent tincidunt nec sem sed mollis. Donec commodo finibus dapibus. Fusce quam leo, efficitur sed blandit vitae, vestibulum et sem. Vestibulum rhoncus, erat quis rutrum placerat, magna felis facilisis ex, at elementum est ipsum sit amet turpis. Etiam rutrum ex at iaculis auctor. Donec elit lorem, tristique vitae arcu semper, aliquet iaculis diam.
+
+                            Proin efficitur vitae purus vel hendrerit. Sed ullamcorper dolor sed sapien congue, eget sollicitudin purus auctor. Maecenas viverra leo eu enim tempor, in aliquet neque rhoncus. Ut quis pharetra odio, non pulvinar lectus. Donec pharetra sagittis vulputate. In hac habitasse platea dictumst. Vivamus blandit lacus rhoncus, ornare lectus non, dictum mi. Etiam quis varius est, quis tempus magna. Curabitur sed erat id lacus placerat interdum ut ut leo. Vivamus iaculis justo velit, ac ultrices velit tempus nec. Donec in commodo magna, eget pretium eros. Curabitur accumsan lacus et orci congue, et varius nibh pulvinar. Sed faucibus quam et lorem pretium tristique.</p>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-10 col-sm-12"><h6>Users to be added to the entity</h6></div>
+                            <div class="col-lg-2 col-sm-12 text-right"><a href="javascript:RenderAddUser();" class="btn btn-orange btn-info btn-lg text-right">Add User</a></div>
+                        </div>
+                        <div class="row">
+                        <div class="tg-wrap col-12">
+                            <table id="users-table" class="tg">
+                                  <tr>
+                                    <th class="tg-9lax">Name</th>
+                                    <th class="tg-9lax">Upperity ID</th>
+                                    <th class="tg-9lax">Entity Role</th>
+                                    <th class="tg-9lax">Is Admin role</th>
+                                    <th class="tg-9lax">Action</th>                                    
+                                  </tr>
+                                  @foreach (var user in Model.entityInformation.EntityUserList)
+                                  {
+                                      string role = "";
+                                      if (user.RolesList.Any())
+                                      {
+                                          foreach (string userRole in user.RolesList)
+                                          {
+                                              role += userRole + ",";
+                                          }
+                                      }
+                                      else
+                                      {
+                                          role = "None";
+                                      }
+                                      <tr>
+                                        <td class="tg-9lax">@user.UserFullName</td>
+                                        <td class="tg-9lax">@user.UpperityUserId</td>
+                                        <td class="tg-9lax">@role</td>
+                                        <td class="tg-9lax">No</td>
+                                        <td class="tg-9lax" style="text-align:center;"><a href="javascript:RenderEditUserRole('@user.UpperityUserId');" class="btn btn-orange btn-info btn-lg text-right">Edit Role</a></td>
+                                      </tr>
+                                  }
+                              </table>
+                          </div>
+                    </div>
+                 </div>
+             </div>
+                <!--END TAB 2-->
+<!--FIN AJOUT-->
+                <!--section2-->
+                <div id="user" class="tab-pane fade">
+                    <form id="user-management" class="form" action="" method="post">
+                    <div class="row profile-info">
+                        <div class="col-lg-12 col-sm-12"><h5>Add User</h5>
+                            <!--Line1-->
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 border">
+                                    <div class="form-group">
+                                    <label for="IDemail" class="text-info">ID or Email Address</label><br>
+                                    <input type="text" name="IDemail" id="IDemail" class="form-control">
+                                   </div>
+                                </div> <span class="or">OR</span>
+                                <div class="row border col-lg-6">
+                                    <div class="col-lg-6 col-sm-10">
+                                        <div class="form-group">
+                                        <label for="firstname" class="text-info">First Name</label><br>
+                                        <input type="text" name="firstname" id="firstname" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-10">
+                                        <div class="form-group">
+                                        <label for="lastname" class="text-info">Last Name</label><br>
+                                        <input type="text" name="lastname" id="lastname" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-sm-12 middle">
+                                    <input type="submit" name="submit" class="btn btn-orange2 btn-info btn-sm text-right" value="Search">
+                                </div>
+                            </div>
+                        </div>   
+                        <!--END Line1-->
+                        <!--Line2-->
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="row">
+                                <div><h5>Search Result</h5></div>
+                            </div>
+                            <div class="row">
+<!-- LIGNE MODIFIÉE-->           <div class="col-lg-6 col-sm-12 border bottom25">
+ <!-- LIGNE MODIFIÉE-->                                   <div>
+<!-- LIGNE MODIFIÉE-->                  <ul id="results">
+<!-- LIGNE MODIFIÉE-->                                               <li class="activeresult">
+<!-- LIGNE MODIFIÉE-->                                           <a href="#" >Résultat 1</a>
+ <!-- LIGNE MODIFIÉE-->                                              </li>
+ <!-- LIGNE MODIFIÉE-->                                               <li>
+<!-- LIGNE MODIFIÉE-->                                           <a href="#">Résultat 2</a>
+ <!-- LIGNE MODIFIÉE-->                                              </li>
+  <!-- LIGNE MODIFIÉE-->                                               <li>
+<!-- LIGNE MODIFIÉE-->                                           <a href="#">Résultat 3</a>
+ <!-- LIGNE MODIFIÉE-->                                              </li>
+ <!-- LIGNE MODIFIÉE-->                                           </ul>
+                                   </div>
+                                </div>
+ <!-- LIGNE MODIFIÉE-->            <div class="col-lg-6 col-sm-12 bottom25">
+ <!-- LIGNE MODIFIÉE-->                <div id="rdzone" class="row">
+<!-- LIGNE MODIFIÉE-->                       <div class="col-lg-2 col-sm-12">
+<!-- LIGNE MODIFIÉE-->                           <div id="profile-img" class="text-center">
+ <!-- LIGNE MODIFIÉE-->                             <img src="/dashboard/assets/User_profile.jpg">
+  <!-- LIGNE MODIFIÉE-->                        </div>
+  <!-- LIGNE MODIFIÉE-->                     </div>
+  <!-- LIGNE MODIFIÉE-->                     <div class="col-lg-10 col-sm-12">
+  <!-- LIGNE MODIFIÉE-->                         <p><strong>Name Lastname</strong></p>
+                                                <p>Cuba</p>
+                                                <p>email@email.com</p>
+  <!-- LIGNE MODIFIÉE-->                     </div>
+  <!-- LIGNE MODIFIÉE-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END Line2-->                    
+                    </div>
+                    <div class="form-group col-12 text-right">
+                        <input type="submit" name="submit" class="btn btn-dark btn-info btn-lg text-right" value="Cancel">
+                        <input type="submit" name="submit" class="btn btn-orange btn-info btn-lg text-right" value="Add User">
+                    </div>
+                    </form>
+                </div>
+                <!--END section2-->
+            </div>
+        </div>
+    </div>
+
+
+      <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" id="modalBody">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add New User</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="modalContent">
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <i class="fas fa-user prefix grey-text"></i>
+              <label data-error="wrong" data-success="right" for="form3">User UpperityID</label>
+              <input type="text" id="form3" class="form-control validate" name="entityName"> <br />
+
+              <input type="button" id="form5" style="width: 15px;" class="form-control validate" name="entityName" value="Search">
+          
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <input type="submit" class="btn btn-indigo" value="Add user">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+$(function () {
+$('#datetimepicker1').datetimepicker({
+viewMode: 'days',
+format: 'YYYY/MM/DD',
+maxDate: 'now'
+});
+});
+
+function RenderAddUser() {
+
+    $.ajax({
+        type: 'POST',
+        url: '/Account/RenderAddUser',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'html',
+        success: function (data) {
+            $('#modalBody').html(data);
+            $("#modalSubscriptionForm").modal("toggle");
+        },
+        error: function (xhr) {
+            alert('error');
+            alert(xhr.responseText);
+        }
+    });
+
+}
+
+function RenderBusinessPartnerApiKeyList() {
+
+}
+    function RenderUserSearch()
+    {
+        var user = $("#upcID").val();
+        $.ajax({
+            type: 'POST',
+            url: '/Account/RenderUserSearch',
+            contentType: 'application/json; charset=utf-8',
+            data: '{upcId: "' + user + '"}',
+            dataType: 'html',
+            success: function (data) {
+                $('#userSearchResult').html(data);
+                
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+    }
+    function AddUserToEntity() {
+        var user = $("#upcID").val();
+        $.ajax({
+            type: 'POST',
+            url: '/Account/AddUserToEntity',
+            contentType: 'application/json; charset=utf-8',
+            data: '{upcId: "' + user + '"}',
+            dataType: 'html',
+            success: function (data) {
+                $("#modalSubscriptionForm").modal("toggle");
+                $(location).attr('href', '/Account/UpperityEntityUserManagement');
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+    function RenderEditUserRole(userId) {
+
+        $.ajax({
+            type: 'POST',
+            url: '/Account/RenderEditUserRole',
+            contentType: 'application/json; charset=utf-8',
+            data: '{userId: "' + userId + '"}',
+            dataType: 'html',
+            success: function (data) {
+                $('#modalBody').html(data);
+                $("#modalSubscriptionForm").modal("toggle");
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+
+    }
+
+    function EditUserRole() {
+
+        var userId = $("#upcId").val();
+        var role = '';
+        $(".roleHolder").each(function (i) {
+            role += $(this).text() + ',';
+        });
+
+        if ($("#isAdmin").is(":checked")) {
+            var isAdmin = true;
+        } else {
+            var isAdmin = false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/Account/EditUserRole',
+            contentType: 'application/json; charset=utf-8',
+            data: '{userId: "' + userId + '", roleList: "' + role + '", isAdmin: ' + isAdmin + ' }',
+            dataType: 'html',
+            success: function (data) {
+                $("#modalSubscriptionForm").modal("toggle");
+                $(location).attr('href', '/Account/UpperityEntityUserManagement');
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+
+    }
+
+    function getCountryList() {
+        $.ajax({
+            type: 'POST',
+            url: '/Account/GetCountryList',
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            dataType: 'html',
+            success: function (data) {
+                $("#entitycountry").html(data);
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+    function getStateList() {
+        $.ajax({
+            type: 'POST',
+            url: '/Account/GetStateList',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'html',
+            async: false,
+            data: '{CountryId: "' + $('#entitycountry').val() + '"}',
+            success: function (data) {
+                $("#province").html(data);
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        getCountryList();
+        $("#entitycountry").val('@Model.entityInformation.AdressList[0].Country');
+        getStateList();
+        $("#province").val('@Model.entityInformation.AdressList[0].ProvinceOrState');
+    }); 
+
+    function removeCurrentRow(caller) {
+        //$(caller).closest('tr').remove();
+        $(caller).parent().parent().remove();
+    }
+
+    function addRole() {
+        if ($("#role").val() != "") {
+            var newRow = '<tr><td class="roleHolder text-center">' + $("#role").val() + '</td><td class="text-center"><input class="btn btn-orange btn-info btn-sm text-right" type="button" value="Remove" onclick="removeCurrentRow(this);"/></td></tr>';
+            $('#role-table tbody').append(newRow);
+            $("#role").val('');
+        }
+    }
+</script>

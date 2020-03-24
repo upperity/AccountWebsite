@@ -1,0 +1,49 @@
+﻿@model UpperityProfileManagement.UpperitySDK.EntityUserRole
+
+<div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Edit user role</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="profile">
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <i class="grey-text"></i>
+              <div>
+                  <input type="hidden" id="upcId" value="@Model.UpperityUserId" />
+                  <label data-error="wrong" data-success="right" for="role">Role Name</label>
+                  <input type="text" id="role" class="form-control validate" value=""  /> <br />
+              </div>
+              <div>
+              <center><input type="button" id="form4" class="btn btn-orange btn-info btn-sm text-right" value="Assign new role" onclick="addRole();" /></center>
+              </div>
+              <div  >
+              <br />
+              <hr />
+              <center><h5>Currently assigned roles</h5></center>
+             <table width="430px;" id="role-table">
+             <tr>
+                 <th class="text-center">Role Name</th>
+                 <th class="text-center">Action</th>
+             </tr>
+             @foreach (var role in Model.RolesList)
+             {
+                 <tr>
+                    <td class="roleHolder text-center">@role</td>
+                    <td class="text-center"><input class="btn btn-orange btn-info btn-sm text-right" type="button" value="Remove" onclick="removeCurrentRow(this);"/></td>
+                 </tr>
+             }
+              </table>
+              </div>
+              
+            <div id="userSearchResult">
+            <br />
+<br />
+            <hr />
+            <center><input type="button" id="form4" class="btn btn-orange btn-info btn-sm text-right" value="Confirm" onclick="EditUserRole()" /> </center>
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          </div>
+      </div>

@@ -1,0 +1,169 @@
+@model UpperityProfileManagement.UpperitySDK.GetUserEntityListResponse
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Manage Entity </title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="~/Dashboard/assets/dash-styles.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <div id="profile">
+        <div class="container">
+            <div class="row">
+                <div id="logo" class="col-lg-4 col-sm-6 col-12"><img src="/dashboard/assets/U_OrangePetit.png"><h4>Manage Entity</h4></div>
+                <div class="col-lg-8 col-sm-6 col-12 middle text-right">
+<!--LIGNE MODIFIÉE-->  <a style="display:none;" class="btn btn-orange btn-info btn-lg text-right" href="" id="displayModal" data-toggle="modal" data-target="#modalSubscriptionForm">Create New Entity</a>
+                </div>
+
+            </div>
+            <div style="height:30px;"><a href="/Account/LogOut" style="float:right;">Log Out</a></div>  
+                 <!--AJOUT-->
+                <div id="nav">
+                    <ul>
+                        <li><a  href="/Account/UpperityUserProfile">Personal Profile</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                        <li><a class="active" href="/Account/ManageEntity">Entity</a></li>
+                        <li><a href="/Account/RenderCreateEntity">Create Entity</a></li>
+                        <li><a href="/Account/RenderPartnerApiKeyList">Become a partner</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                    </ul>
+                </div>
+                <!--FIN AJOUT-->           
+            <div class="row profile-info">
+                <div class="col-lg-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                          <form id="manage-entity" class="form" action="" method="post">
+                            <div class="form-group">
+                              <div class="tg-wrap">
+                                <table id="emails-table" class="tg tg-wide2">
+                                  <tr>
+                                    <th class="tg-5lax">Entity Name</th>
+                                    <th class="tg-4lax">Type</th>
+<!--LIGNE MODIFIÉE-->               <th class="tg-4lax">Jurisdiction</th>
+                                    <th class="tg-4lax">Entity Role</th>
+                                    <th class="tg-4lax">Administrative Role</th>
+                                    <th class="tg-6lax">Trust Level</th>
+                                  </tr>
+                                  @foreach (var entity in Model.userRoleInformation)
+                                  {
+                                      <tr>
+                                      @if (!entity.isEntityConfirmed)
+                                      {
+    <!--LIGNE MODIFIÉE-->                 <td class="">@entity.EntityName</td>
+                                      }
+                                      else
+                                      {
+                                        <td class=""><a href="/Account/RenderEntityProfile?EntityID=@entity.UpperityEntityId">@entity.EntityName</a></td>
+                                      }
+    <!--LIGNE MODIFIÉE-->                <td class="">@entity.EntityType</td>
+    <!--LIGNE MODIFIÉE-->               <td class="">@entity.EntityJuridiction</td>
+                                        @{string role = "";
+                                          if (entity.RolesList.Any())
+                                          {
+                                              for (int i = 0; i < entity.RolesList.Count; i++)
+                                              {
+                                                  if (i != 0)
+                                                  {
+                                                      role += ",";
+                                                  }
+
+                                                  role += entity.RolesList[i];
+                                              }
+                                          }
+                                        }
+                                        @if (role != "")
+                                        {
+    <!--LIGNE MODIFIÉE-->                <td class="">@role</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="">&nbsp;</td>
+                                        }
+                                        @if (entity.IsAdministrator)
+                                        {
+                                            <td class="">True</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="">False</td>
+                                        }
+    <!--LIGNE MODIFIÉE-->                 
+                                        @if (!entity.isEntityConfirmed)
+                                        {
+                                            <td class="">Pending<br />Confirmation</td>
+                                        }
+                                        else
+                                        {
+                                            if (entity.EntityTrustLevel == 0)
+                                            {
+                                                <td class="">1</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="">@entity.EntityTrustLevel</td>
+                                            }
+
+                                        }
+    <!--LIGNE MODIFIÉE-->                
+                                      </tr>
+                                  }
+                                </table>
+                            </div>
+                          </div>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+  </div>
+
+  <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Create new entity</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="createNewEntity" class="form" action="/Account/CreateEntity" method="post">
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <label data-error="wrong" data-success="right" for="form3">Entity Name</label>
+          <input type="text" id="form3" class="form-control validate" name="entityName">
+          
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" class="btn btn-indigo" value="Create Entity">
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript" language="javascript">
+
+    function addUser() {
+
+    }
+
+          
+</script>
+</body>
+</html>

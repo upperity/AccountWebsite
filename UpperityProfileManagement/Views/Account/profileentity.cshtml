@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upperity Entity Profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/dashboard/assets/dash-styles.css'" rel="stylesheet" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="assets/bootstrap-datetimepicker.min.css">
+    <script src="assets/bootstrap-datetimepicker.min.js"></script>
+</head>
+<body>
+    <div id="profile">
+        <div class="container">
+            <div class="row">
+                <div id="logo" class="col-lg- col-sm-12"><img src="/dashboard/assets/U_OrangePetit.png"><h4>Upperity Entity Profile ()</h4></div>
+<!--RETRAIT de plusieurs lignes-->
+            </div>
+                 <!--AJOUT-->
+                <div id="nav">
+                    <ul>
+                        <li><a  href="./profile.html">Personal Profile</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                        <li><a class="active" href="./manage-entity.html">Entity</a></li>
+                       <li><a href="/Account/RenderCreateEntity">Create Entity</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                    </ul>
+                </div>
+                <!--FIN AJOUT-->  
+            <!--TAB1-->
+            <!--NAV tabs-->
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#general">General Information</a></li>
+                <li><a data-toggle="tab" href="#user">User Management</a></li>
+            </ul>
+            <div class="tab-content">
+                <!--Section1-->
+                <div id="general" class="tab-pane active">
+                    <form id="genral-info" class="form" action="" method="post">
+                        <div class="row profile-info">
+<!--AJOUT-->
+                    <!--Line0-->
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group">
+                            <label for="currenttrustlevel" class="text-info">Current Trust Level :</label>
+                           </div>
+                        </div>
+                    </div>
+                    <!--END Line0-->
+<!--FIN AJOUT-->
+                    
+                        <div class="col-lg-12 col-sm-12">
+                            <!--Line1-->
+                            <div class="row">
+<!--LIGNE MODIFIÉE-->                                <div class="col-lg-10 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="entityname" class="text-info">Entity Name</label><br>
+                                    <input type="text" name="entityname" id="entityname" class="form-control">
+                                   </div>
+                                </div>
+<!--LIGNE MODIFIÉE-->                                <div class="col-lg-2 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="language" class="text-info">Language</label><br>
+                                        <select class="mdb-select md-form">
+                                          <option value="" disabled selected>---</option>
+                                          <option value="1">English</option>
+                                          <option value="2">French</option>
+                                          <option value="3">Option 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END Line1-->
+                            <!--Line2-->
+                            <div class="row">
+                                <div class="col-lg-5 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="entitytype" class="text-info">Entity Type</label><br>
+                                    <input type="text" name="entitytype" id="entitytype" class="form-control"><span class="info2"><a href=""><img class="info2" src="/dashboard/assets/info.jpg"></a></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-sm-12">
+                                    <div class="form-group">
+<!--LIGNE MODIFIÉE-->               <label for="entityjurisdiction" class="text-info">Entity jurisdiction</label><br>
+<!--LIGNE MODIFIÉE-->               <input type="text" name="entityjurisdiction" id="entityjurisdiction" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="date-incorporation" class="text-info">Date of incorporation</label><br>
+                                    <input type='text' class="form-control" id='datetimepicker1' /><i class="fa fa-calendar uppercalendar"></i>
+                                    </div>
+                                </div>
+ <!-- LIGNE AJOUTÉE-->           <div class="col-12" style="text-align: right;"><a href="./trust-level-entity.html" class="btn btn-orange2 btn-info btn-sm text-right">Upgrade My Trust Level</a></div>
+                            </div>
+                            <!--END Line2-->                    
+                            <!--Line3-->
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="buildingname" class="text-info">Building Name</label><br>
+                                    <input type="text" name="buildingname" id="buildingname" class="form-control">
+                                   </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="buildingnumber" class="text-info">Building Number</label><br>
+                                    <input type="text" name="buildingnumber" id="buildingnumber" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="streetname" class="text-info">Street Name</label><br>
+                                    <input type="text" name="streetname" id="streetname" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+<!-- LIGNE MODIFIEÉ-->              <label for="unitnumber" class="text-info">Unit Number (e.g. Office/Suite/Floor)</label><br>
+                                    <input type="text" name="unitnumber" id="unitnumber" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END Line3-->   
+                            <!--Line4-->
+                            <div class="row">
+<!-- LIGNES INVERSÉES-->
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="pobox" class="text-info">PO Box</label><br>
+                                    <input type="text" name="pobox" id="pobox" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="country" class="text-info">Country</label><br>
+                                        <select class="mdb-select md-form">
+                                          <option value="" disabled selected>---</option>
+                                          <option value="1">Option 1</option>
+                                          <option value="2">Option 2</option>
+                                          <option value="3">Option 3</option>
+                                        </select>
+                                     </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="province" class="text-info">Province/State</label><br>
+                                        <select class="mdb-select md-form">
+                                          <option value="" disabled selected>---</option>
+                                          <option value="1">Option 1</option>
+                                          <option value="2">Option 2</option>
+                                          <option value="3">Option 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="city" class="text-info">City</label><br>
+                                    <input type="text" name="city" id="city" class="form-control">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--END Line4-->
+                            <!--Line5-->
+                            <div class="row">
+
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="suburb" class="text-info">Suburb</label><br>
+                                    <input type="text" name="suburb" id="suburb" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="postalcode" class="text-info">Postal / ZIP Code</label><br>
+                                    <input type="text" name="postalcode" id="postalcode" class="form-control">
+                                    </div>
+                                </div>
+                                 <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="phonenumber" class="text-info">Phone Number</label><br>
+                                    <input type="text" name="phonenumber" id="phonenumber" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+<!-- FIN LIGNES INVERSÉS-->                            
+                            <!--END Line5-->
+                        </div>
+                    </div>
+<!--AJOUT-->
+            <!--Section2-->
+            <div class="profile-info med">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12">
+                            <div class="form-group">
+                             <label for="documents-table" class="text-info">Upload your business document</label><br>
+                            <div class="tg-wrap"><table id="documents-table" class="tg">
+                                  <tr>
+                                    <th class="tg-8lax">Document<span class="plus2"><a href=""><img class="plus" src="/dashboard/assets/plus.png"></a></span></th>
+                                    <th class="tg-7lax"></th>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-8lax"><input type="text" name="phone" id="phone" class="form-control"></td>
+                                    <td class="tg-7lax" style="text-align:center;"><a href="" class="btn btn-dark2 btn-info btn-lg text-right">Browse</a><a href="" class="btn btn-orange btn-info btn-lg text-right">View</a><a href=""><img  class="trash" src="/dashboard/assets/trash.jpg"></a></td>
+                                  </tr>
+                                </table>
+                            </div>
+                       </div>
+                        </div>
+                </div>
+            </div>
+
+            <!--END section2-->
+<!--FIN AJOUT-->
+                    <div class="form-group col-12 text-right">
+                        <input type="submit" name="submit" class="btn btn-dark btn-info btn-lg text-right" value="Cancel">
+                        <input type="submit" name="submit" class="btn btn-orange btn-info btn-lg text-right" value="Save">
+                    </div>
+
+
+                    </form>
+                </div>
+                <!--END TAB 1-->
+<!--AJOUT-->
+                <!--TAB 2-->
+                <div id="user" class="tab-pane fade">
+                    <div class="profile-info">
+                        <div class="row col-12"><h6>Addition of multiple users</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor pellentesque mi, non placerat erat condimentum at. Cras maximus luctus tellus, ac suscipit est auctor sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla lectus nulla, vehicula quis congue quis, tincidunt non eros. In sed tincidunt sem. Aliquam vitae finibus lectus. Nunc dolor tortor, commodo ut eros ac, sollicitudin mollis odio.
+
+                            Suspendisse sagittis aliquet felis, ac ornare lectus malesuada sit amet. Praesent tincidunt nec sem sed mollis. Donec commodo finibus dapibus. Fusce quam leo, efficitur sed blandit vitae, vestibulum et sem. Vestibulum rhoncus, erat quis rutrum placerat, magna felis facilisis ex, at elementum est ipsum sit amet turpis. Etiam rutrum ex at iaculis auctor. Donec elit lorem, tristique vitae arcu semper, aliquet iaculis diam.
+
+                            Proin efficitur vitae purus vel hendrerit. Sed ullamcorper dolor sed sapien congue, eget sollicitudin purus auctor. Maecenas viverra leo eu enim tempor, in aliquet neque rhoncus. Ut quis pharetra odio, non pulvinar lectus. Donec pharetra sagittis vulputate. In hac habitasse platea dictumst. Vivamus blandit lacus rhoncus, ornare lectus non, dictum mi. Etiam quis varius est, quis tempus magna. Curabitur sed erat id lacus placerat interdum ut ut leo. Vivamus iaculis justo velit, ac ultrices velit tempus nec. Donec in commodo magna, eget pretium eros. Curabitur accumsan lacus et orci congue, et varius nibh pulvinar. Sed faucibus quam et lorem pretium tristique.</p>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-10 col-sm-12"><h6>Users to be added to the entity</h6></div>
+                            <div class="col-lg-2 col-sm-12 text-right"><ul class="nav nav-tabs"><li><a data-toggle="tab" href="#adduser" class="btn btn-orange btn-info btn-lg text-right">Add User</a></li></ul></div>
+                        </div>
+                        <div class="row">
+                        <div class="tg-wrap col-12">
+                            <table id="users-table" class="tg">
+                                  <tr>
+                                    <th class="tg-9lax">Name</th>
+                                    <th class="tg-9lax">Upperity ID</th>
+                                    <th class="tg-9lax">Entity Role</th>
+                                    <th class="tg-9lax">Is Admin role</th>
+                                    <th class="tg-9lax">Action</th>                                    
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-9lax">Jonh Doe</td>
+                                    <td class="tg-9lax">JOHN123</td>
+                                    <td class="tg-9lax">None</td>
+                                    <td class="tg-9lax">No</td>
+                                    <td class="tg-9lax" style="text-align:center;"><a href="" class="btn btn-orange btn-info btn-lg text-right">Add Role</a></td>
+                                  </tr>
+                              </table>
+                          </div>
+                    </div>
+                 </div>
+             </div>
+                <!--END TAB 2-->
+<!--FIN AJOUT-->
+                <!--TAB 3-->
+                <div id="adduser" class="tab-pane fade">
+                    <form id="user-management" class="form" action="" method="post">
+                    <div class="row profile-info">
+                        <div class="col-lg-12 col-sm-12"><h6>Add User</h6>
+                            <!--Line1-->
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 border">
+                                    <div class="form-group">
+                                    <label for="IDemail" class="text-info">ID or Email Address</label><br>
+                                    <input type="text" name="IDemail" id="IDemail" class="form-control">
+                                   </div>
+                                </div> <span class="or">OR</span>
+                                <div class="row border col-lg-6">
+                                    <div class="col-lg-6 col-sm-10">
+                                        <div class="form-group">
+                                        <label for="firstname" class="text-info">First Name</label><br>
+                                        <input type="text" name="firstname" id="firstname" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-10">
+                                        <div class="form-group">
+                                        <label for="lastname" class="text-info">Last Name</label><br>
+                                        <input type="text" name="lastname" id="lastname" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-sm-12 middle">
+                                    <input type="submit" name="submit" class="btn btn-orange2 btn-info btn-sm text-right" value="Search">
+                                </div>
+                            </div>
+                        </div>   
+                        <!--END Line1-->
+                        <!--Line2-->
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="row">
+                                <div><h5>Search Result</h5></div>
+                            </div>
+                            <div class="row">
+<!-- LIGNE MODIFIÉE-->           <div class="col-lg-6 col-sm-12 border bottom25">
+ <!-- LIGNE MODIFIÉE-->                                   <div>
+<!-- LIGNE MODIFIÉE-->                  <ul id="results">
+<!-- LIGNE MODIFIÉE-->                                               <li class="activeresult">
+<!-- LIGNE MODIFIÉE-->                                           <a href="#" >Résultat 1</a>
+ <!-- LIGNE MODIFIÉE-->                                              </li>
+ <!-- LIGNE MODIFIÉE-->                                               <li>
+<!-- LIGNE MODIFIÉE-->                                           <a href="#">Résultat 2</a>
+ <!-- LIGNE MODIFIÉE-->                                              </li>
+  <!-- LIGNE MODIFIÉE-->                                               <li>
+<!-- LIGNE MODIFIÉE-->                                           <a href="#">Résultat 3</a>
+ <!-- LIGNE MODIFIÉE-->                                              </li>
+ <!-- LIGNE MODIFIÉE-->                                           </ul>
+                                   </div>
+                                </div>
+ <!-- LIGNE MODIFIÉE-->            <div class="col-lg-6 col-sm-12 bottom25">
+ <!-- LIGNE MODIFIÉE-->                <div id="rdzone" class="row">
+<!-- LIGNE MODIFIÉE-->                       <div class="col-lg-2 col-sm-12">
+<!-- LIGNE MODIFIÉE-->                           <div id="profile-img" class="text-center">
+ <!-- LIGNE MODIFIÉE-->                             <img src="/dashboard/assets/User_profile.jpg">
+  <!-- LIGNE MODIFIÉE-->                        </div>
+  <!-- LIGNE MODIFIÉE-->                     </div>
+  <!-- LIGNE MODIFIÉE-->                     <div class="col-lg-10 col-sm-12">
+  <!-- LIGNE MODIFIÉE-->                         <p><strong>Name Lastname</strong></p>
+                                                <p>Cuba</p>
+                                                <p>email@email.com</p>
+  <!-- LIGNE MODIFIÉE-->                     </div>
+  <!-- LIGNE MODIFIÉE-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END Line2-->                    
+                    </div>
+                    <div class="form-group col-12 text-right">
+                        <input type="submit" name="submit" class="btn btn-dark btn-info btn-lg text-right" value="Cancel">
+                        <input type="submit" name="submit" class="btn btn-orange btn-info btn-lg text-right" value="Add User">
+                    </div>
+                    </form>
+                </div>
+                <!--END TAB 3-->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+$(function () {
+$('#datetimepicker1').datetimepicker({
+viewMode: 'days',
+format: 'DD/MM/YYYY',
+maxDate: 'now'
+}); 
+});
+</script>

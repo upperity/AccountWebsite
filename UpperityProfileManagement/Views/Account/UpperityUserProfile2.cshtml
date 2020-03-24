@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Upperity Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/dashboard/assets/dash-styles.css'" rel="stylesheet" type="text/css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+    <div id="profile">
+        <div class="container">
+         <div id="logo"><img src="/dashboard/assets/U_OrangePetit.png"><h4>Upperity Profile</h4></div>
+                <!--AJOUT-->
+                <div id="nav">
+                    <ul>
+                        <li><a class="active" href="./profile.html">Personal Profile</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                        <li><a href="./manage-entity.html">Entity</a></li>
+                        <li><a href="/Account/ManageEntity">Create a Entity</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                    </ul>
+                </div>
+                <!--FIN AJOUT-->
+            <form id="profile-form" class="form" action="" method="post"><!--Section1-->
+            <div class="row profile-info">
+                <div class="col-xl-2 col-sm-12 med">
+                    <div id="profile-img" class="text-center">
+                        <img src="/dashboard/assets/User_profile.jpg">
+                    </div>
+                    <div class="text-center high">
+<!--LIGNE MODIFIÉE-->  <a href="./trust-level.html" class="btn btn-orange2 btn-info btn-lg text-center">Upgrade My Trust Level</a>
+                    </div>
+                </div>
+                <div class="col-xl-10 col-sm-12">
+                    <!--Line1-->
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-10">
+                            <div class="form-group">
+                            <label for="firstname" class="text-info">First Name</label><br>
+                            <input type="text" name="firstname" id="firstname" class="form-control">
+                           </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-10">
+                            <div class="form-group">
+                            <label for="middlename" class="text-info">Middle Name</label><br>
+                            <input type="text" name="middlename" id="middlename" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-10">
+                            <div class="form-group">
+                            <label for="lastname" class="text-info">Last Name</label><br>
+                            <input type="text" name="lastname" id="lastname" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <!--END Line1-->
+                    <!--Line2-->
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="form-group">
+<!--LIGNE MODIFIÉE-->          <label for="email" class="text-info">Email</label><span class="plus"><a href=""><img class="plus" src="/dashboard/assets/plus.png"></a></span><br>
+                            <!--input type="text" name="firstname" id="firstname" class="form-control"-->
+                            <div class="tg-wrap">
+                                <table id="emails-table" class="tg">
+                                  <tr>
+                                    <th class="tg-0lax">Email ID</th>
+                                    <th class="tg-1lax">Type</th>
+                                    <th class="tg-2lax">Default</th>
+                                    <th class="tg-3lax"></th>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-0lax"><input type="text" name="email" id="email" class="form-control"></td>
+                                    <td class="tg-0lax">
+                                        <select class="mdb-select md-form">
+                                        <option value="" disabled selected>---</option>
+                                        <option value="1">Personal</option>
+                                        <option value="2">Entreprise</option>
+                                        <option value="3">Other</option>
+                                        </select></td>
+                                    <td class="tg-0lax"><input type="radio" name="default-email" id="default-email" class="form-control"></td>
+                                    <td class="tg-0lax"><a href=""><img class="trash" src="/dashboard/assets/trash.jpg"></a></td>
+                                  </tr>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="form-group">
+<!--LIGNE MODIFÉE-->          <label for="phone" class="text-info">Phone</label><span class="plus"><a href=""><img class="plus" src="/dashboard/assets/plus.png"></a></span><br>
+                            <!--input type="text" name="middlename" id="middlename" class="form-control"-->
+                            <div class="tg-wrap">
+                                <table id="phones-table" class="tg">
+                                  <tr>
+                                    <th class="tg-0lax">Phone</th>
+                                    <th class="tg-1lax">Type</th>
+                                    <th class="tg-2lax">Default</th>
+                                    <th class="tg-3lax"></th>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-0lax"><input type="text" name="phone" id="phone" class="form-control"></td>
+                                    <td class="tg-0lax">
+                                        <select class="mdb-select md-form">
+                                        <option value="" disabled selected>---</option>
+                                        <option value="1">Mobile</option>
+                                        <option value="2">Entreprise</option>
+                                        <option value="3">Other</option>
+                                        </select></td>
+                                    <td class="tg-0lax"><input type="radio" name="default-email" id="default-email" class="form-control"></td>
+                                    <td class="tg-0lax"><a href=""><img class="trash" src="/dashboard/assets/trash.jpg"></a></td>
+                                  </tr>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END Line2-->                    
+                    <!--Line3-->
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="form-group">
+                            <label for="buildingname" class="text-info">Building Name</label><br>
+                            <input type="text" name="buildingname" id="buildingname" class="form-control">
+                           </div>
+                        </div>
+                        <div class="col-3 col-lg-3 col-sm-12">
+                            <div class="form-group">
+                            <label for="buildingnumber" class="text-info">Building Number</label><br>
+                            <input type="text" name="buildingnumber" id="buildingnumber" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-3 col-lg-3 col-sm-12">
+                            <div class="form-group">
+                            <label for="streetname" class="text-info">Street Name</label><br>
+                            <input type="text" name="streetname" id="streetname" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-3 col-lg-3 col-sm-12">
+                            <div class="form-group">
+                            <label for="unitnumber" class="text-info">Unit Number (e.g. Office/Suite/Floor)</label><br>
+                            <input type="text" name="unitnumber" id="unitnumber" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <!--END Line3-->   
+                    <!--Line4-->
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="pobox" class="text-info">PO Box</label><br>
+                            <input type="text" name="pobox" id="pobox" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="country" class="text-info">Country</label><br>
+                                <select class="mdb-select md-form">
+                                  <option value="" disabled selected>---</option>
+                                  <option value="1">Option 1</option>
+                                  <option value="2">Option 2</option>
+                                  <option value="3">Option 3</option>
+                                </select>
+                             </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="province" class="text-info">Province/State</label><br>
+                                <select class="mdb-select md-form">
+                                  <option value="" disabled selected>---</option>
+                                  <option value="1">Option 1</option>
+                                  <option value="2">Option 2</option>
+                                  <option value="3">Option 3</option>
+                                </select>
+                                </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="city" class="text-info">City</label><br>
+                            <input type="text" name="city" id="city" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--END Line4-->
+                    <!--Line5-->
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="suburb" class="text-info">Suburb</label><br>
+                            <input type="text" name="suburb" id="suburb" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="postalcode" class="text-info">Postal / ZIP Code</label><br>
+                            <input type="text" name="postalcode" id="postalcode" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <!--END Line5-->
+                </div>
+            </div>
+            <!--EDN section1-->
+            <!--Section2-->
+            <div class="row profile-info med">
+                <div class="col-12">
+                    <div><h5>Change your Password</h5></div>
+                    <div id="rst-pass" class="row">
+                        <form id="login-form" class="form" action="" method="post">
+                        <div class="form-group col-lg-3 col-sm-12">
+                            <div>
+                                <label for="currentpass" class="text-info">Current Password</label><br>
+                                <input type="password" name="currentpass" id="currentpass" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-3 col-sm-12">
+                            <div>
+                                <label for="newpass" class="text-info">New Password</label><br>
+                                <input type="password" name="newpass" id="newpass" class="form-control">
+                             </div>
+                        </div>
+                        <div class="form-group col-lg-3 col-sm-12">
+                            <div>
+                                <label for="confirmpass" class="text-info">Confirm Password</label><br>
+                                <input type="password" name="confirmpass" id="confirmpass" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-3 col-sm-12 btn-rst">
+                            <div class="text-right">
+                            <input type="submit" name="submit" class="btn btn-orange btn-info btn-lg text-center" value="Change Password">
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--END section2-->
+            <div class="form-group col-12 text-right">
+                <input type="submit" name="submit" class="btn btn-orange btn-info btn-lg text-right" value="Update">
+            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

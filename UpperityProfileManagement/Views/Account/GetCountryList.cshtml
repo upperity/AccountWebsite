@@ -1,0 +1,18 @@
+﻿@model UpperityProfileManagement.UpperitySDK.GetCountryListResponse
+
+@{
+    
+    bool isFirstCountry = true;
+}
+@foreach (var country in Model.countryList)
+{
+    if (isFirstCountry)
+    {
+        isFirstCountry = false;
+        <option value="@country.CountryId" selected>@country.CountryName</option>
+    }
+    else
+    {
+        <option value="@country.CountryId">@country.CountryName</option>
+    }
+}
