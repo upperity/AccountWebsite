@@ -1,0 +1,746 @@
+@model UpperityProfileManagement.UpperitySDK.GetUserPersonalInformationResponse
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Trust Level</title>
+<!--AJOUT-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script  src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
+    <script src="~/Dashboard/assets/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <link href="~/Dashboard/assets/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Dashboard/assets/dash-styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/Dashboard/assets/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!--FIN AJOUT-->
+</head>
+<body>
+@{
+    int EmailIndexer = 0;
+    int PhoneIndexer = 0;
+    }
+    <div id="profile">
+        <div class="container">
+            <div class="row">
+                <div id="logo" class="col-lg-4 col-sm-12"><img src="/dashboard/assets/U_OrangePetit.png"><h4>Upgrade My Trust Level</h4>
+                </div>
+            </div>
+<!--AJOUT-->
+<div style="height:30px;"><a href="/Account/LogOut" style="float:right;">Log Out</a></div>  
+                <div id="nav">
+                    <ul>
+                        <li><a class="active" href="/Account/UpperityUserProfile">Personal Profile</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                        <li><a href="/Account/ManageEntity">Entity</a></li>
+                        <li><a href="/Account/RenderCreateEntity">Create Entity</a></li>
+                        <li><a href="/Account/RenderPartnerApiKeyList">Become a partner</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                    </ul>
+                </div>
+<!--FIN AJOUT-->
+            <!--Section1-->
+            <div class="row profile-info">
+                <div class="col-lg-12 col-sm-12">
+                    <form id="trust-level" class="form" action="/Account/UpgradeUser" method="post" enctype="multipart/form-data">
+<!--AJOUT-->
+                    <!--Line0-->
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group">
+                            <label for="desiredtrustlevel" class="text-info">Select the desired Trust Level</label><br>
+                              <fieldset id="trustlevel">
+                              @switch (Model.UserInformation.UserCertificationLevel)
+                              {
+                                  case 0:
+                                   <span><input type="radio" value="1" name="trustlevel" onchange="isPinNeeded();" disabled> Level 1</span><span style="Color:#ef4223;">(Current Trust Level)</span><br/>
+                                    <span><input type="radio" value="2" name="trustlevel" onchange="isPinNeeded();" checked> Level 2</span><br/>
+                                    <span><input type="radio" value="3" name="trustlevel" onchange="isPinNeeded();"> Level 3</span><br/>
+                                    <span><input type="radio" value="4" name="trustlevel" onchange="isPinNeeded();"> Level 4</span>
+                                      break;
+                                  case 1:
+                                    <span><input type="radio" value="1" name="trustlevel" onchange="isPinNeeded();" disabled> Level 1</span><span style="Color:#ef4223;">(Current Trust Level)</span><br/>
+                                    <span><input type="radio" value="2" name="trustlevel" onchange="isPinNeeded();" checked> Level 2</span><br/>
+                                    <span><input type="radio" value="3" name="trustlevel" onchange="isPinNeeded();"> Level 3</span><br/>
+                                    <span><input type="radio" value="4" name="trustlevel" onchange="isPinNeeded();"> Level 4</span>
+                                      break;
+                                  case 2:
+                                    <span><input type="radio" value="1" name="trustlevel" onchange="isPinNeeded();" disabled> Level 1</span><br/>
+                                    <span><input type="radio" value="2" name="trustlevel" onchange="isPinNeeded();" disabled> Level 2</span><span style="Color:#ef4223;">(Current Trust Level)</span><br/>
+                                    <span><input type="radio" value="3" name="trustlevel" onchange="isPinNeeded();" checked> Level 3</span><br/>
+                                    <span><input type="radio" value="4" name="trustlevel" onchange="isPinNeeded();"> Level 4</span>
+                                      break;
+                                  case 3:
+                                    <span><input type="radio" value="1" name="trustlevel" onchange="isPinNeeded();" disabled> Level 1</span><br/>
+                                    <span><input type="radio" value="2" name="trustlevel" onchange="isPinNeeded();" disabled> Level 2</span><br/>
+                                    <span><input type="radio" value="3" name="trustlevel" onchange="isPinNeeded();" disabled> Level 3</span><span style="Color:#ef4223;">(Current Trust Level)</span><br/>
+                                    <span><input type="radio" value="4" name="trustlevel" onchange="isPinNeeded();" checked> Level 4</span>
+                                      break;
+                              }
+                                
+                            </fieldset>
+                            <p>If you require some more information, please refer to the page <a href="http://www.upperity.com/how-it-works/" target="_blank">http://www.upperity.com/how-it-works/</a></p>
+                           </div>
+                        </div>
+                    </div>
+                     <input type="hidden" name="finalinvoiceId" id="finalinvoiceId" value="" />
+                    <!--END Line0-->
+<!--FIN AJOUT-->
+                    <!--Line1-->
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="form-group">
+                            <label for="firstname" class="text-info">First Name</label><br>
+                            <input type="text" name="firstname" id="firstname" class="form-control" value="@Model.UserInformation.firstName" required>
+                           </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="form-group">
+                            <label for="middlename" class="text-info">Middle Name</label><br>
+                            <input type="text" name="middlename" id="middlename" class="form-control" value="@Model.UserInformation.middleName">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="form-group">
+                            <label for="lastname" class="text-info">Last Name</label><br>
+                            <input type="text" name="lastname" id="lastname" class="form-control" value="@Model.UserInformation.LastName"  required>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END Line1-->
+                    <!--Line2-->
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="form-group">
+                            <label for="email" class="text-info">Email</label><span class="plus"><a href="javascript:addEmailField();"><img class="plus" src="/dashboard/assets/plus.png"></a></span><br>
+                            <!--input type="text" name="firstname" id="firstname" class="form-control"-->
+                            <div class="tg-wrap"><table id="emails-table" class="tg">
+                                  <tr>
+                                    <th class="tg-0lax">Email ID</th>
+                                    <th class="tg-1lax">Type</th>
+                                    <th class="tg-2lax">Default</th>
+                                    <th class="tg-3lax"></th>
+                                  </tr>
+                                  @if (Model.UserInformation.UserEmailList.Any())
+                                        {
+                                            foreach (var email in Model.UserInformation.UserEmailList)
+                                            {
+                                            <tr>
+                                                <td class="tg-0lax">
+                                                    <input type="text" name="email_@EmailIndexer" id="email_@EmailIndexer" class="form-control" value="@email.email" required>
+                                                </td>
+                                                <td class="tg-0lax">
+                                                    <select class="mdb-select md-form" name="emailType_@EmailIndexer" id="emailType_@EmailIndexer">
+                                                        
+                                                       @switch (email.emailType)
+                                                        {
+                                                            case "0":
+                                                                <option value="0" selected>Other</option>
+                                                                <option value="1">Personal</option>
+                                                                <option value="2">Work</option>
+                                                                break;
+                                                            case "1":
+                                                                <option value="0">Other</option>
+                                                                <option value="1" selected>Personal</option>
+                                                                <option value="2">Work</option>
+                                                                break;
+                                                            default:
+                                                                <option value="0">Other</option>
+                                                                <option value="1">Personal</option>
+                                                                <option value="2" selected>Work</option>
+                                                                break;
+                                                        }
+                                                        
+                                                    </select>
+                                                </td>
+                                                <td class="tg-0lax">
+                                                @if (email.isDefault)
+                                                {
+                                                    <input type="radio" name="emailDefault" id="emailIsDefault_@EmailIndexer" class="form-control" value="@EmailIndexer" checked>
+                                                }
+                                                else
+                                                {
+                                                    <input type="radio" name="emailDefault" id="emailIsDefault_@EmailIndexer" class="form-control" value="@EmailIndexer">
+                                                }
+                                                   
+                                                </td>
+                                                <td class="tg-0lax">
+                                                @if (EmailIndexer == 0)
+                                                {
+                                                    <span>&nbsp;</span>
+                                                }
+                                                else
+                                                {
+                                                    <a href="#" onclick="removeCurrentRow(this);">
+                                                        <img class="trash" src="/dashboard/assets/trash.jpg"></a>
+                                                }
+                                                </td>
+                                            </tr>
+                                                EmailIndexer++;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td class="tg-0lax">
+                                                    <input type="text" name="email_0" id="email_0" class="form-control" required>
+                                                </td>
+                                                <td class="tg-0lax">
+                                                    <select class="mdb-select md-form" name="emailtype_0" id="emailtype_0">
+                                                         <option value="0" selected>Other</option>
+                                                        <option value="1">Personal</option>
+                                                        <option value="2">Work</option>
+                                                    </select>
+                                                </td>
+                                                <td class="tg-0lax">
+                                                    <input type="radio" name="emailDefault" id="emailIsDefault_0" value="0" class="form-control">
+                                                </td>
+                                                <td class="tg-0lax">
+                                                     <span>&nbsp;</span>
+                                                </td>
+                                            </tr>
+                                        }
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="form-group">
+                            <label for="phone" class="text-info">Phone</label><span class="plus"><a href="javascript:addPhoneField();"><img class="plus" src="/dashboard/assets/plus.png"></a></span><br>
+                            <!--input type="text" name="middlename" id="middlename" class="form-control"-->
+                            <div class="tg-wrap"><table id="phones-table" class="tg">
+                                  <tr>
+                                    <th class="tg-0lax">Phone</th>
+                                    <th class="tg-1lax">Type</th>
+                                    <th class="tg-2lax">Default</th>
+                                    <th class="tg-3lax"></th>
+                                  </tr>
+                                  @if (Model.UserInformation.phoneNumberList.Any())
+                                        {
+
+                                            foreach (var phone in Model.UserInformation.phoneNumberList)
+                                            {
+                                            <tr>
+                                            <td class="tg-0lax">
+                                                <input type="text" name="phone_@PhoneIndexer" id="phone_@PhoneIndexer" class="form-control" value="@phone.phoneNumber" required>
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <select class="mdb-select md-form" id="phoneType_@PhoneIndexer" name="phoneType_@PhoneIndexer">
+                                                    @switch (phone.phoneType)
+                                                    {
+                                                        case "0":
+                                                             <option value="0" selected>Other</option>
+                                                            <option value="1">Mobile</option>
+                                                            <option value="2">Work</option>
+                                                            <option value="3">Home</option>
+                                                            break;
+                                                        case "1":
+                                                           <option value="0">Other</option>
+                                                            <option value="1" selected>Mobile</option>
+                                                            <option value="2">Work</option>
+                                                            <option value="3">Home</option>
+                                                            break;
+                                                        case "2":
+                                                           <option value="0">Other</option>
+                                                            <option value="1">Mobile</option>
+                                                            <option value="2" selected>Work</option>
+                                                            <option value="3">Home</option>
+                                                            break;
+                                                        default:
+                                                            <option value="0">Other</option>
+                                                            <option value="1">Mobile</option>
+                                                            <option value="2">Work</option>
+                                                            <option value="3" selected>Home</option>
+                                                            break;
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td class="tg-0lax">
+                                                @if (phone.isDefault)
+                                                {
+                                                    <input type="radio" name="phoneDefault" id="phoneisDefault_@PhoneIndexer" class="form-control" value="@PhoneIndexer" checked>
+                                                }
+                                                else
+                                                {
+                                                    <input type="radio" name="phoneDefault" id="phoneisDefault_@PhoneIndexer" class="form-control" value="@PhoneIndexer">
+                                                }
+                                                
+                                            </td>
+                                            <td class="tg-0lax">
+                                                @if (PhoneIndexer == 0)
+                                                {
+                                                    <span>&nbsp;</span>
+                                                }
+                                                else
+                                                {
+                                                    <a href="#" onclick="removeCurrentRow(this);">
+                                                    <img class="trash" src="/dashboard/assets/trash.jpg"></a>
+                                                }
+                                                
+                                            </td>
+                                            </tr>
+                                                PhoneIndexer++;
+                                            }
+                                        }
+                                  else
+                                  {
+                                            <tr>
+                                            <td class="tg-0lax">
+                                                <input type="text" name="phone_0" id="phone_0" class="form-control" required>
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <select class="mdb-select md-form" name="phoneType_0" id="phoneType_0">
+                                                     <option value="0" selected>Other</option>
+                                                            <option value="1">Mobile</option>
+                                                            <option value="2">Work</option>
+                                                            <option value="3">Home</option>
+                                                </select>
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="radio" name="phoneDefault" id="phoneisDefault_0" class="form-control" value="0">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                 <span>&nbsp;</span>
+                                            </td>
+                                            </tr>
+                                      PhoneIndexer++;
+                                  }
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END Line2-->                    
+                    <!--Line3-->
+<!-- LIGNES INVERSÉES-->
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="form-group">
+                            <label for="buildingname" class="text-info">Building Name</label><br>
+                            <input type="text" name="buildingname" id="buildingname" class="form-control" value="@Model.UserInformation.AddressList[0].BuildingName">
+                           </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="form-group">
+                            <label for="buildingnumber" class="text-info">Building Number</label><br>
+                            <input type="text" name="buildingnumber" id="buildingnumber" class="form-control" value="@Model.UserInformation.AddressList[0].BuildingNumber">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="form-group">
+                            <label for="streetname" class="text-info">Street Name</label><br>
+                            <input type="text" name="streetname" id="streetname" class="form-control" value="@Model.UserInformation.AddressList[0].StreetName">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="form-group">
+                            <label for="unitnumber" class="text-info">Unit Number (e.g. Office/Suite/Floor)</label><br>
+                            <input type="text" name="unitnumber" id="unitnumber" class="form-control" value="@Model.UserInformation.AddressList[0].UnitNumber">
+                            </div>
+                        </div>
+                    </div>
+                    <!--END Line3-->   
+                    <!--Line4-->
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="pobox" class="text-info">PO Box</label><br>
+                            <input type="text" name="pobox" id="pobox" class="form-control" value="@Model.UserInformation.AddressList[0].POBox">
+                            </div>
+                        </div>
+                         <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="country" class="text-info">Country</label><br>
+                                <select class="mdb-select md-form" id="usercountry" name="usercountry" onchange="getStateList();">
+                                  <option value="" disabled selected>---</option>
+                                 
+                                </select>
+                             </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="province" class="text-info">Province/State</label><br>
+                                <select class="mdb-select md-form" id="userState" name="userState">
+                                  <option value="" disabled selected>---</option>
+                                 
+                                </select>
+                                </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="city" class="text-info">City</label><br>
+                            <input type="text" name="city" id="city" class="form-control" value="@Model.UserInformation.AddressList[0].City">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--END Line4-->
+                    <!--Line4-->
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="suburb" class="text-info">Suburb</label><br>
+                            <input type="text" name="suburb" id="suburb" class="form-control" value="@Model.UserInformation.AddressList[0].SubUrb">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="postalcode" class="text-info">Postal / ZIP Code</label><br>
+                            <input type="text" name="postalcode" id="postalcode" class="form-control" value="@Model.UserInformation.AddressList[0].PostalOrZipCode">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                            <label for="gender" class="text-info">Gender</label><br>
+                                <select class="mdb-select md-form" name="GenderSelection">
+                                @switch (Model.UserInformation.gender)
+                                {
+                                    case "1":
+                                          <option value="1" selected>Male</option>
+                                          <option value="2">Female</option>
+                                          <option value="0">Other</option>
+                                        break;
+                                    case "2":
+                                          <option value="1">Male</option>
+                                          <option value="2" selected>Female</option>
+                                          <option value="0">Other</option>
+                                        break;
+                                    case "0":
+                                          <option value="1">Male</option>
+                                          <option value="2">Female</option>
+                                          <option value="0" selected>Other</option>
+                                        break;
+                                    default:
+                                          <option value="1" selected>Male</option>
+                                          <option value="2">Female</option>
+                                          <option value="0">Other</option>
+                                        break;
+                                }
+                                  
+                                </select>
+                                </div>
+                        </div>
+                    </div>
+                    <!--END Line5-->
+<!--Fin lignes inversées-->
+               
+            <!--END section1-->
+<!--AJOUT-->
+            <!--Section2-->
+            <div class="profile-info med" id="birthblock">
+                <div class="row">
+                <div class="form-group col-lg-3 col-sm-12">
+                @if (Model.UserInformation.BirthDate == DateTime.MinValue)
+                {
+                    <div >
+                    <label for="date-birth" class="text-info">Date of birth</label><br>
+                    <input type='text' class="form-control" id='datetimepicker1' name="dateofbirth" value="" /><i class="fa fa-calendar uppercalendar" required></i>
+                    </div>
+                }
+                else
+                {
+                    <div >
+                    <label for="date-birth" class="text-info">Date of birth</label><br>
+                    <input type='text' class="form-control" id='datetimepicker1' name="dateofbirth" value="@Model.UserInformation.BirthDate.ToShortDateString()" required /><i class="fa fa-calendar uppercalendar"></i>
+                    </div>
+                }
+                    
+                </div>
+                <div class="form-group col-lg-3 col-sm-12">
+                    <div>
+                        <label for="birthcountry" class="text-info">Birth Country</label><br>
+                        <input type="text" name="birthcountry" id="birthcountry" class="form-control" value="@Model.UserInformation.BirthCountry" required>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-sm-12">
+                    <div>
+                        <label for="birthcity" class="text-info">Birth City</label><br>
+                        <input type="text" name="birthcity" id="birthcity" class="form-control" value="@Model.UserInformation.BirthCity" required>
+                    </div>
+                </div>
+                </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6 col-sm-12">
+                                <div>
+                                <label for="mothersname" class="text-info">Mother's maiden name</label><br>
+                                <input type="text" name="mothersname" id="mothersname" class="form-control" value="@Model.UserInformation.BirthMotherfullname" required>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6 col-sm-12">
+                                <div>
+                                <label for="fathersname" class="text-info">Father's name</label><br>
+                                <input type="text" name="fathersname" id="fathersname" class="form-control" value="@Model.UserInformation.BirthFatherfullName" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!--END section2-->
+            <!--Section3-->
+            <div class="profile-info med">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12">
+                            <div class="form-group">
+                            <label for="documents-table" class="text-info">Upload your personal documents</label><br>
+                            <div class="tg-wrap"><table id="documents-table" class="tg">
+                                  <tr>
+                                    <th class="tg-8lax">Document<span class="plus2"><a href="javascript:addDocument();"><img class="plus" src="/dashboard/assets/plus.png"></a></span></th>
+                                    <th class="tg-7lax"></th>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-8lax"><input type="text" name="filename_1" id="filename_1" class="form-control"  required></td>
+                                    <td class="tg-7lax" style="text-align:center;">
+                                    <input type="file" name="file_1" onchange="setFileName(this,'1');" id="fileSelector" style="display:none;" accept="image/jpeg,image/tiff,image/bmp,image/gif,image/png,application/pdf"  required/>
+                                    <label for="fileSelector" class="btn btn-dark2 btn-info btn-lg text-right">Browse</label>
+                                     
+                                    @*<a href="" class="btn btn-orange btn-info btn-lg text-right">View</a>*@
+                                    <span onclick="removeCurrentRow(this);"><a href="javascript:removeCurrentRow(this);">&nbsp;<img  class="trash" src="/dashboard/assets/trash.jpg"></a></span>
+                                    </td>
+                                  </tr>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <!--END section3-->
+            <!--Section4-->
+            @if (Model.UserInformation.UserCertificationLevel > 2)
+            {
+                <div class="profile-info med" id="PinNeeded">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12"><p>Please enter a PIN between 4 to 8 characters/numbers. This PIN will be used to protect the use of your digital signature certificate and you will be required to enter it when you'll want to sign any document.</p></div>
+                        <div class="form-group col-xl-2 col-md-6 col-sm-12">
+                            <label for="pin" class="text-info">Enter your PIN</label><br>
+                            <input type="text" name="pin" id="pin" class="form-control"  required>
+                        </div>
+                        <div class="form-group col-xl-2 col-md-6 col-sm-12">
+                            <label for="confirmpin" class="text-info">Confirm your PIN</label><br>
+                            <input type="text" name="confirmpin" id="confirmpin" class="form-control"  required>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="profile-info med" id="PinNeeded" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12"><p>Please enter a PIN between 4 to 8 characters/numbers. This PIN will be used to protect the use of your digital signature certificate and you will be required to enter it when you'll want to sign any document.</p></div>
+                        <div class="form-group col-xl-2 col-md-6 col-sm-12">
+                            <label for="pin" class="text-info">Enter your PIN</label><br>
+                            <input type="text" name="pin" id="pin" class="form-control" pattern=".{4,8}" onchange="checkMatch();">
+                        </div>
+                        <div class="form-group col-xl-2 col-md-6 col-sm-12">
+                            <label for="confirmpin" class="text-info">Confirm your PIN</label><br>
+                            <input type="text" name="confirmpin" id="confirmpin" class="form-control" onchange="checkMatch();">
+                        </div>
+                    </div>
+                </div>
+            }
+            <!--END section4-->
+<!--FIN AJOUT-->
+            <div class="form-group col-12 text-right">
+                <input type="submit" name="submit" class="btn btn-dark btn-info btn-lg text-right" value="Cancel">
+                  <input type="submit" name="submit" id="submitter" class="btn btn-orange btn-info btn-lg text-right" style="display: none;" value="Send to Upperity">
+                <input type="button" name="" class="btn btn-orange btn-info btn-lg text-right" onclick="getInvoice();" value="Send to Upperity">
+            </div>
+             </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!--AJOUT-->
+
+<script language="javascript" type="text/javascript">
+    var indexer = 1;
+
+    var phoneIndex = 150;
+    var emailIndex = 150;
+    function getInvoice() {
+
+        if (isRequiredCompleted()) {
+            $.ajax({
+                type: 'POST',
+                url: '/Account/GenerateInvoice',
+                data: '{invoiceType: 1, invoiceLevel: "' + $("input[name='trustlevel']:checked").val() + '"}',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+
+                    window.open(data.invoiceURL, '_blank');
+                    checkPaiementReceive(data.invoiceId);
+
+
+                },
+                error: function (xhr) {
+                    alert('error');
+                    alert(xhr.responseText);
+                }
+            });
+        } else {
+            $("#submitter").click();
+        }
+    }
+
+
+    function checkPaiementReceive(invoiceId) {
+
+        setTimeout(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/Account/checkPaiementReceive',
+                data: '{invoiceId: "' + invoiceId + '"}',
+                contentType: 'application/json; charset=utf-8',
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    //$('#EntityDocumentList').html(data);
+                    if (data.isPaid == true) {
+                        $("#finalinvoiceId").val(invoiceId);
+                        $("#submitter").click();
+                    } else {
+                        checkPaiementReceive(invoiceId);
+                    }
+                },
+                error: function (xhr) {
+                    alert('error');
+                    alert(xhr.responseText);
+                }
+            });
+        }, 5000);
+
+    }
+
+    function isRequiredCompleted() {
+        var form = document.getElementById('trust-level');
+        for (var i = 0; i < form.elements.length; i++) {
+            if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
+
+                return false;
+            }
+        }
+
+        return true;
+    }
+    function addEmailField() {
+        var newRow = '<tr><td class="tg-0lax"><input type="text" name="email_' + emailIndex + '" id="email_' + emailIndex + '" class="form-control" required></td><td class="tg-0lax"><select class="mdb-select md-form" name="emailtype_' + emailIndex + '" id="emailtype_' + emailIndex + '"><option value="1" selected>Personal</option><option value="2">Entreprise</option><option value="3">Other</option></select></td><td class="tg-0lax"><input type="radio" name="emailDefault" value="' + emailIndex + '" class="form-control"></td><td class="tg-0lax"><a href="#" onclick="removeCurrentRow(this);"><img class="trash" src="/dashboard/assets/trash.jpg"></a></td></tr>';
+        $('#emails-table tbody').append(newRow);
+        emailIndex++;
+    }
+
+    function addPhoneField() {
+        var newRow = '<tr><td class="tg-0lax"><input type="text" name="phone_' + phoneIndex + '" id="phone_' + phoneIndex + '" class="form-control" required></td><td class="tg-0lax"><select class="mdb-select md-form" name="phoneType_' + phoneIndex + '" id="phoneType_' + phoneIndex + '"><option value="1" selected>Mobile</option><option value="2">Entreprise</option><option value="3">Other</option></select></td><td class="tg-0lax"><input type="radio" name="phoneDefault" class="form-control" value="' + phoneIndex + '"></td><td class="tg-0lax"><a href="#" onclick="removeCurrentRow(this);"><img class="trash" src="/dashboard/assets/trash.jpg"></a></td></tr>';
+        $('#phones-table tbody').append(newRow);
+        phoneIndex++;
+    }
+
+    function addDocument() {
+        indexer++;
+        var newRow = '<tr><td class="tg-8lax"><input type="text" name="filename_' + indexer + '" id="filename_' + indexer + '" class="form-control" required></td><td class="tg-7lax" style="text-align:center;"><input type="file" accept="image/jpeg,image/tiff,image/bmp,image/gif,image/png,application/pdf" name="file_' + indexer + '" onchange="setFileName(this,\'' + indexer + '\');" id="fileSelector' + indexer + '" style="display:none;" /><label for="fileSelector' + indexer + '" class="btn btn-dark2 btn-info btn-lg text-right">Browse</label><span onclick="removeCurrentRow(this);"><a href="javascript:removeCurrentRow(this);"><img  class="trash" src="/dashboard/assets/trash.jpg"></a></span></td></tr>';
+        $('#documents-table tbody').append(newRow);
+    }
+    function removeCurrentRow(caller) {
+        //$(caller).closest('tr').remove();
+        $(caller).parent().parent().remove();
+    }
+    function setFileName(caller, identifier) {
+        var pointer = "#filename_" + identifier;
+        $(pointer).val(caller.value.split(/(\\|\/)/g).pop());
+    }
+
+    function isPinNeeded() {
+        var level = $("input[name='trustlevel']:checked").val();
+        if (level > 2) {
+            $("#PinNeeded").css('display', '');
+            $("#birthblock").css('display', '');
+
+            $('#pin').prop('required', true);
+            $('#confirmpin').prop('required', true);
+            $('#datetimepicker1').prop('required', true);
+            $('#birthcountry').prop('required', true);
+            $('#birthcity').prop('required', true);
+            $('#mothersname').prop('required', true);
+            $('#fathersname').prop('required', true);
+        } else {
+            $("#PinNeeded").css('display', 'none');
+            $("#birthblock").css('display', 'none');
+
+            $('#pin').prop('required', false);
+            $('#confirmpin').prop('required', false);
+            $('#datetimepicker1').prop('required', false);
+            $('#birthcountry').prop('required', false);
+            $('#birthcity').prop('required', false);
+            $('#mothersname').prop('required', false);
+            $('#fathersname').prop('required', false);
+        }
+
+    }
+
+    function checkMatch() {
+        if ($("#pin").val() != $("#confirmpin").val()) {
+            $('#confirmpin').get(0).setCustomValidity('Both PIN must match.');
+        } else {
+            $('#confirmpin').get(0).setCustomValidity('');
+        }
+    }
+
+    function getCountryList() {
+        $.ajax({
+            type: 'POST',
+            url: '/Account/GetCountryList',
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            dataType: 'html',
+            success: function (data) {
+                $("#usercountry").html(data);
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+    function getStateList() {
+        $.ajax({
+            type: 'POST',
+            url: '/Account/GetStateList',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'html',
+            async: false,
+            data: '{CountryId: "' + $('#usercountry').val() + '"}',
+            success: function (data) {
+                $("#userState").html(data);
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            viewMode: 'days',
+            format: 'YYYY/MM/DD',
+            maxDate: 'now'
+        });
+
+        getCountryList();
+        $("#usercountry").val('@Model.UserInformation.AddressList[0].Country');
+        getStateList();
+        $("#userState").val('@Model.UserInformation.AddressList[0].ProvinceOrState');
+
+        isPinNeeded();
+
+    });
+</script>
+<!-- FIN ajout-->

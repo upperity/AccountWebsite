@@ -1,0 +1,103 @@
+﻿@model UpperityProfileManagement.UpperitySDK.GetEntityTypeListResponse
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upperity Entity Profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
+    <script src="~/Dashboard/assets/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <link href="~/Dashboard/assets/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Dashboard/assets/dash-styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/Dashboard/assets/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="profile">
+        <div class="container">
+            <div class="row">
+                <div id="logo" class="col-lg-4 col-sm-12"><img src="/dashboard/assets/U_OrangePetit.png"><h4>Create a entity</h4></div>
+            </div>
+            <div style="height:30px;"><a href="/Account/LogOut" style="float:right;">Log Out</a></div>  
+            <div id="nav">
+                    <ul>
+                        <li><a  href="/Account/UpperityUserProfile">Personal Profile</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                        <li><a  href="/Account/ManageEntity">Entity</a></li>
+                        <li><a class="active" href="/Account/RenderCreateEntity">Create Entity</a></li>
+                        <li><a href="/Account/RenderPartnerApiKeyList">Become a partner</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                    </ul>
+                </div>
+            <!--TAB1-->
+            <!--Section1-->
+            <div class="tab-content">
+                <!--Section1-->
+                <div id="general" class="tab-pane active">
+
+                    <div class="row profile-info">
+                    <!--Line0-->
+                        <div class="col-lg-12 col-sm-12">
+                           <div id="login">
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div>
+                    <div id="login-box" class="col-md-12">
+                             <div class="high2"><br /><br />
+                            <h3 class="text-center" style="color: #ef4223;">Registration successful!</h3></div>
+                            <div style="width: 550px;">
+<p>Thank you for registering with Upperity!</p>
+
+<p>To activate your account, you will need to accept the Upperity Business Agreement. We have sent you an email with a link to access the Business Agreement.</p>
+
+<p>If the email fail to be delivered into your inbox, please check your spam folder.  To avoid receiving other email from Upperity into your spam folder, you can add Upperity.com in your safe senders list or in your contacts.</p>
+<br /><br />
+<p><center><a class="btn btn-orange btn-info btn-lg text-right" href="/Account/UpperityUserProfile">Back to Personal Profile</a></center></p>
+                           </div>
+                           </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                        </div>
+                                               
+                    
+                    </div>
+                     <!--Section2-->
+                    
+
+            <!--END section2-->
+                    
+                </div>
+
+                <!--END section2-->
+            </div>
+        </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    function toggleAccept() {
+        if (document.getElementById("TCCheck").checked) {
+            document.getElementById("submitter").disabled = false;
+        } else {
+            document.getElementById("submitter").disabled = true;
+        }
+    }
+
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            viewMode: 'days',
+            format: 'YYYY/MM/DD',
+            maxDate: 'now'
+        });
+    });
+</script>

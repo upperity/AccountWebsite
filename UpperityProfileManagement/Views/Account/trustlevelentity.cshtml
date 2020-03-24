@@ -1,0 +1,618 @@
+@model UpperityProfileManagement.UpperitySDK.GetEntityInformationResponse
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Entity Trust Level</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <script  src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
+    <script src="~/Dashboard/assets/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <link href="~/Dashboard/assets/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Dashboard/assets/dash-styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/Dashboard/assets/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="profile">
+        <div class="container">
+        <form id="entity-trust-level" class="form" action="/Account/RequestUpgradeEntity" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div id="logo" class="col-lg-12 col-sm-12"><img src="/dashboard/assets/U_OrangePetit.png"><h4>Upgrade My Trust Level (@Model.entityInformation.CompanyName)</h4></div>
+<!--RETRAIT de plusieurs lignes-->
+            </div>
+                <!--AJOUT-->
+                <div style="height:30px;"><a href="/Account/LogOut" style="float:right;">Log Out</a></div>  
+                <div id="nav">
+                    <ul>
+                        <li><a  href="/Account/UpperityUserProfile">Personal Profile</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                        <li><a class="active" href="/Account/ManageEntity">Entity</a></li>
+                        <li><a href="/Account/RenderCreateEntity">Create Entity</a></li>
+                        <li><a href="/Account/RenderPartnerApiKeyList">Become a partner</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                    </ul>
+                </div>
+                <!--FIN AJOUT-->
+            <!--Section1-->
+            <div class="row profile-info">
+<!--AJOUT-->
+                    <!--Line0-->
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group">
+                            <label for="currenttrustlevel" class="text-info">Current Trust Level : @Model.entityInformation.EntityTrustLevel</label><br>
+                            <label for="desiredtrustlevel" class="text-info">Select the desired Trust Level</label><br>
+                              <fieldset id="trustlevel">
+                              @switch (Model.entityInformation.EntityTrustLevel)
+                              {
+                                  case 0:
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="1" name="trustlevel" disabled> Level 1</span><span style="Color:#ef4223;">(Current Trust Level)</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="2" name="trustlevel" checked> Level 2</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="3" name="trustlevel"> Level 3</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="4" name="trustlevel"> Level 4</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="5" name="trustlevel"> Level 5</span>
+                                      break;
+                                  case 1:
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="1" name="trustlevel" disabled> Level 1</span><span style="Color:#ef4223;">(Current Trust Level)</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="2" name="trustlevel" checked> Level 2</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="3" name="trustlevel"> Level 3</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="4" name="trustlevel"> Level 4</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="5" name="trustlevel"> Level 5</span>
+                                      break;
+                                  case 2:
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="1" name="trustlevel" disabled> Level 1</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="2" name="trustlevel" disabled> Level 2</span><span style="Color:#ef4223;">(Current Trust Level)</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="3" name="trustlevel" checked> Level 3</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="4" name="trustlevel"> Level 4</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="5" name="trustlevel"> Level 5</span>
+                                      break;
+                                  case 3:
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="1" name="trustlevel" disabled> Level 1</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="2" name="trustlevel" disabled> Level 2</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="3" name="trustlevel" disabled> Level 3</span><span style="Color:#ef4223;">(Current Trust Level)</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="4" name="trustlevel" checked> Level 4</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="5" name="trustlevel"> Level 5</span>
+                                      break;
+                                   case 4:
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="1" name="trustlevel" disabled> Level 1</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="2" name="trustlevel" disabled> Level 2</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="3" name="trustlevel" disabled> Level 3</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="4" name="trustlevel" disabled> Level 4</span><span style="Color:#ef4223;">(Current Trust Level)</span><br/>
+                                    <span><input onclick="setRequiredDocument();" type="radio" value="5" name="trustlevel" checked> Level 5</span>
+                                      break;
+
+                              }
+                            </fieldset>
+                            <p>If you require some more information, please refer to the page <a href="http://www.upperity.com/how-it-works/" target="_blank">http://www.upperity.com/how-it-works/</a></p>
+                           </div>
+                        </div>
+                    </div>
+                    <!--END Line0-->
+<!--FIN AJOUT-->
+                <div class="col-lg-12 col-sm-12">
+                    
+                    @switch (Model.entityInformation.EntityTrustLevel)
+                    {
+                        case 0:
+                                    <input type="hidden" name="requestedTrustLevel" id="requestedTrustLevel" value="1" />
+                            break;
+                        case 1:
+                                    <input type="hidden" name="requestedTrustLevel" id="requestedTrustLevel" value="2" />
+                            break;
+                        case 2:
+                                    <input type="hidden" name="requestedTrustLevel" id="requestedTrustLevel" value="3" />
+                            break;
+                        case 3:
+                                    <input type="hidden" name="requestedTrustLevel" id="requestedTrustLevel" value="4" />
+                            break;
+                    }
+                    <input type="hidden" name="finalinvoiceId" id="finalinvoiceId" value="" />
+                    <!--Line1-->
+                    <div class="row">
+<!--LIGNE MODIFIÉE-->                        <div class="col-lg-5 col-sm-12">
+                            <div class="form-group">
+                                <label for="entityname" class="text-info" value="@Model.entityInformation.CompanyName">Entity Name</label><br>
+                                <input type="text" name="entityname" id="entityname" class="form-control" value="@Model.entityInformation.CompanyName" required>
+                            </div>
+                        </div>
+<!--LIGNE MODIFIÉE-->                        <div class="col-lg-5 col-sm-12">
+                            <div class="form-group">
+                                <label for="phonenumber" class="text-info">Phone Number</label><br>
+                                <input type="text" name="phonenumber" id="phonenumber" class="form-control" value="@Model.entityInformation.PhoneNumberList[0].phoneNumber"  required>
+                            </div>
+                        </div>
+<!--LIGNE MODIFIÉE-->                        <div class="col-lg-2 col-sm-12">
+                            <div class="form-group">
+                                <label for="language" class="text-info">Language</label><br>
+                                <select class="mdb-select md-form"  name="language">
+                                     @switch (Model.entityInformation.ISOLanguageId)
+                                     {
+                                         case 1036:
+                                                  <option value="1033">English</option>
+                                                  <option value="1036" selected>French</option>
+                                             break;
+                                         default:
+                                                  <option value="1033" selected>English</option>
+                                                  <option value="1036">French</option>
+                                             break;
+                                     }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END Line1-->
+                    <!--Line2-->
+                    <div class="row">
+<!--LIGNE MODIFIÉE-->                        <div class="col-lg-5 col-sm-12">
+<div class="form-group">
+                                <label for="country" class="text-info">Entity Type</label><br>
+                                <select class="mdb-select md-form" id="selectedEntityType" name="selectedEntityType" onchange="setRequiredDocument();">
+                                    @foreach (var entityType in Model.entityInformation.entityTypeList)
+                                    {
+                                        if (Model.entityInformation.EntityType == entityType.entityTypeId.ToString())
+                                        { 
+                                            <option value="@entityType.entityTypeId" selected>@entityType.entityTypeName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@entityType.entityTypeId">@entityType.entityTypeName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+</div>                        
+                        <!--
+                            <div class="form-group">
+                                <label for="entitytype" class="text-info">Entity Type</label><br>
+                                <input type="text" name="entitytype" id="entitytype" class="form-control" >
+                            </div>
+                        </div>
+                        -->  
+<!--LIGNE MODIFIÉE-->                        <div class="col-lg-5 col-sm-12">
+                            <div class="form-group">
+                               <label for="entityjuridiction" class="text-info">Entity jurisdiction</label><br>
+                                    <input type="text" name="entityjuridiction" id="entityjuridiction" class="form-control" value="@Model.entityInformation.EntityJurisdiction" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-12">
+                            <div class="form-group">
+                                <label for="date-incorporation" class="text-info">Date of incorporation</label><br>
+                                <div class="input-group">
+                                @if (Model.entityInformation.DateOfIncorporation == DateTime.MinValue)
+                                {
+                                    <input type='text' class="form-control" name="incorporationDate" id='datetimepicker1' value=""  required/>
+                                    
+                                }
+                                else
+                                {
+                                    <input type='text' class="form-control" name="incorporationDate" id='datetimepicker1' value="@Model.entityInformation.DateOfIncorporation.ToShortDateString()"  required/>
+                                    
+                                }
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END Line2-->
+                    <!--Line3-->
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="form-group">
+                                <label for="buildingname" class="text-info">Building Name</label><br>
+                                <input type="text" name="buildingname" id="buildingname" class="form-control" value="@Model.entityInformation.AdressList[0].BuildingName" >
+                            </div>
+                        </div>
+                        <div class="col-3 col-lg-3 col-sm-12">
+                            <div class="form-group">
+                                <label for="buildingnumber" class="text-info">Building Number</label><br>
+                                <input type="text" name="buildingnumber" id="buildingnumber" class="form-control" value="@Model.entityInformation.AdressList[0].BuildingNumber" >
+                            </div>
+                        </div>
+                        <div class="col-3 col-lg-3 col-sm-12">
+                            <div class="form-group">
+                                <label for="streetname" class="text-info">Street Name</label><br>
+                                <input type="text" name="streetname" id="streetname" class="form-control" value="@Model.entityInformation.AdressList[0].StreetName">
+                            </div>
+                        </div>
+                        <div class="col-3 col-lg-3 col-sm-12">
+                            <div class="form-group">
+                                <label for="unitnumber" class="text-info">Unit Number (e.g. Office/Suite/Floor)</label><br>
+                                <input type="text" name="unitnumber" id="unitnumber" class="form-control" value="@Model.entityInformation.AdressList[0].UnitNumber">
+                            </div>
+                        </div>
+                    </div>
+                    <!--END Line3-->
+                    <!--Line4-->
+<!-- LIGNEs INVERSÉES-->
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="pobox" class="text-info">PO Box</label><br>
+                                <input type="text" name="pobox" id="pobox" class="form-control" value="@Model.entityInformation.AdressList[0].POBox">
+                            </div>
+                        </div>                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="country" class="text-info">Country</label><br>
+                                <select class="mdb-select md-form" name="entitycountry" id="entitycountry" onchange="getStateList();">
+                                    <option value="" disabled selected>---</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="province" class="text-info">Province/State</label><br>
+                                <select class="mdb-select md-form" name="province" id="province">
+                                    <option value="" disabled selected>---</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="city" class="text-info">City</label><br>
+                                <input type="text" name="city" id="city" class="form-control" value="@Model.entityInformation.AdressList[0].City">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--END Line4-->
+                    <!--Line5-->
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="suburb" class="text-info">Suburb</label><br>
+                                <input type="text" name="suburb" id="suburb" class="form-control" value="@Model.entityInformation.AdressList[0].SubUrb">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="postalcode" class="text-info">Postal / ZIP Code</label><br>
+                                <input type="text" name="postalcode" id="postalcode" class="form-control" value="@Model.entityInformation.AdressList[0].PostalOrZipCode">
+                            </div>
+                        </div>
+                    </div>
+<!-- FIN LIGNEs INVERSÉES-->
+                    <!--END Line5-->
+                    <!--Line6-->
+                    <div class="row">
+                                            @if (Model.entityInformation.EntityTrustLevel >= 2)
+                                            {
+<!--LIGNE MODIFIÉE-->                        <div class="col-lg-6 col-sm-12" id="directorstable">
+                                                <div class="form-group">
+                    <!--LIGNE MODIFIÉE-->                                <label for="directorsnames" class="text-info">Name of all Directors(s)</label><span class="plus"><a href="javascript:addDirectorRow();"><img class="plus" src="/dashboard/assets/plus.jpg"></a></span><br>
+                                                    <div class="tg-wrap">
+                     <!--LIGNE MODIFIÉE-->                                   <table id="directors-table" class="tg">
+                                                            <tr>
+                    <!--LIGNE MODIFIÉE-->                                            <th class="tg">Director name</th>
+                                                            </tr>
+                                                            <tr>
+                    <!--LIGNE MODIFIÉE-->                                            <td class="tg"><input type="text" name="directorname" class="form-control directorsReqToggle" required></td><td>&nbsp</td>
+                                                            </tr>
+                                                            
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            }
+                                            else
+                                            {
+                                            <div class="col-lg-6 col-sm-12" id="directorstable" style="display:none">
+                                                <div class="form-group">
+                    <!--LIGNE MODIFIÉE-->                                <label for="directorsnames" class="text-info">Name of all Directors(s)</label><span class="plus"><a href="javascript:addDirectorRow();"><img class="plus" src="/dashboard/assets/plus.jpg"></a></span><br>
+                                                    <div class="tg-wrap">
+                     <!--LIGNE MODIFIÉE-->                                   <table id="directors-table" class="tg">
+                                                            <tr>
+                    <!--LIGNE MODIFIÉE-->                                            <th class="tg">Director name</th>
+                                                            </tr>
+                                                            <tr>
+                    <!--LIGNE MODIFIÉE-->                                            <td class="tg"><input type="text" name="directorname" class="form-control directorsReqToggle"></td><td>&nbsp</td>
+                                                            </tr>
+                                                            
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            }
+                                            @if (Model.entityInformation.EntityTrustLevel == 4)
+                                            {
+    <!--LIGNE MODIFIÉE-->                        <div class="col-lg-6 col-sm-12" id="stakeholderstable">
+                                                    <div class="form-group">
+                        <!--LIGNE MODIFIÉE-->                                <label for="stakeholders" class="text-info">Name of all 10% and above beneficial owner(s)</label><span class="plus"><a href="javascript:addBeneficialOwnerRow();"><img class="plus" src="/dashboard/assets/plus.jpg"></a></span><br>
+                                                        <div class="tg-wrap">
+                        <!--LIGNE MODIFIÉE-->                                    <table id="stakeholders" class="tg">
+                                                                <tr>
+                        <!--LIGNE MODIFIÉE-->                                            <th class="tg">Beneficial owner name</th>
+                                                                </tr>
+                                                                <tr>
+                         <!--LIGNE MODIFIÉE-->                                           <td class="tg"><input type="text" name="stakeholdername" class="form-control stakeholderReqToggle" required></td><td>&nbsp</td>
+                                                                </tr>
+                                                               
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-lg-6 col-sm-12" id="stakeholderstable" style="display:none;">
+                                                    <div class="form-group">
+                        <!--LIGNE MODIFIÉE-->                                <label for="stakeholders" class="text-info">Name of all 10% and above beneficial owner(s)</label><span class="plus"><a href="javascript:addBeneficialOwnerRow();"><img class="plus" src="/dashboard/assets/plus.jpg"></a></span><br>
+                                                        <div class="tg-wrap">
+                        <!--LIGNE MODIFIÉE-->                                    <table id="stakeholders" class="tg">
+                                                                <tr>
+                        <!--LIGNE MODIFIÉE-->                                            <th class="tg">Beneficial owner name</th>
+                                                                </tr>
+                                                                <tr>
+                         <!--LIGNE MODIFIÉE-->                                           <td class="tg"><input type="text" name="stakeholdername" class="form-control stakeholderReqToggle"></td>
+                                                                                            <td>&nbsp</td>
+                                                                </tr>
+                                                                
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                    </div>
+                    <!--END Line6-->
+                
+            </div>
+            
+            </div>
+            <!--END section1-->
+<!--AJOUT-->
+            <!--Section2-->
+            
+            <div class="profile-info med" id="EntityDocumentList">
+            @if (Model.entityInformation.UpgradeDocumentTypeList.Any())
+            {
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12" >
+
+                            <div class="form-group">
+<!--LIGNES MODIFIÉES-->                            <label for="documents-table" class="text-info">Upload your business document</label><br>
+                            @foreach (var docType in Model.entityInformation.UpgradeDocumentTypeList)
+                            {
+                                <div class="tg-wrap"><table id="documents-tableType-@docType.DocumentTypeId" class="tg">
+                                        <tr>
+                                        <th class="tg-8lax">@docType.DocumentTypeDescription<span class="plus2"><a href="javascript:addDocumentType_@docType.DocumentTypeId.ToString()Row();"><img class="plus" src="/dashboard/assets/plus.png"></a></span></th>
+                                        <th class="tg-7lax"></th>
+                                        </tr>
+                                        <tr>
+                                        <td class="tg-8lax"><input type="text" name="EntityDocument_1_Type_@docType.DocumentTypeId.ToString()" id="EntityDocument_1_Type_@docType.DocumentTypeId.ToString()" class="form-control"  required></td>
+                                        <td class="tg-7lax" style="text-align:center;">
+                                        <input id="fileSelector_@docType.DocumentTypeId.ToString()_1" type="file" name="file_EntityDocument_1_Type_@docType.DocumentTypeId.ToString()" onchange="setFileName(this,'EntityDocument_1_Type_@docType.DocumentTypeId.ToString()');" style="display:none;" />
+                                        <label for="fileSelector_@docType.DocumentTypeId.ToString()_1" class="btn btn-dark2 btn-info btn-lg text-right">Browse</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <script language="javascript" type="text/javascript">
+                                    function addDocumentType_@docType.DocumentTypeId.ToString()Row() {
+                                        indexer++;
+                                        var newRow = '<tr><td class="tg-8lax"><input type="text" name="EntityDocument_' + indexer + '_Type_@docType.DocumentTypeId.ToString()" id="EntityDocument_' + indexer + '_Type_@docType.DocumentTypeId.ToString()" class="form-control"></td><td class="tg-7lax" style="text-align:center;"><input id="fileSelector_@docType.DocumentTypeId.ToString()_' + indexer + '" type="file" name="file_EntityDocument_' + indexer + '_Type_@docType.DocumentTypeId.ToString()" onchange="setFileName(this,\'EntityDocument_' + indexer + '_Type_@docType.DocumentTypeId.ToString()\');" style="display:none;" /><label for="fileSelector_@docType.DocumentTypeId.ToString()_' + indexer + '" class="btn btn-dark2 btn-info btn-lg text-right">Browse</label><span onclick="removeCurrentRow(this);"><a href="javascript:removeCurrentRow(this);"><img  class="trash" src="/dashboard/assets/trash.jpg"></a></span></td></tr>';
+                                        $('#documents-tableType-@docType.DocumentTypeId tbody').append(newRow);
+                                    }
+                                </script>
+                            }
+<!--FIN LIGNES MODIFIÉES-->                            </div>
+                        </div>
+                </div>
+            }
+            </div>
+            
+            <!--END section2-->
+<!--FIN ajout-->
+            <div class="form-group col-12 text-right">
+                <input type="submit" name="submit" class="btn btn-dark btn-info btn-lg text-right" value="Cancel">
+                <input type="submit" name="submit" id="submitter" class="btn btn-orange btn-info btn-lg text-right" style="display: none;" value="Send to Upperity">
+                <input type="button" name="" class="btn btn-orange btn-info btn-lg text-right" onclick="getInvoice();" value="Send to Upperity">
+            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+<script language="javascript" type="text/javascript">
+    var ispaid = false;
+    var indexer = 1;
+    function setFileName(caller, identifier) {
+        $('#' + identifier).val(caller.value.split(/(\\|\/)/g).pop());
+    }
+    function removeCurrentRow(caller) {
+        $(caller).parent().parent().remove();
+    }
+
+    function addDirectorRow() {
+        var newRow = '<tr><td class="tg"><input type="text" name="directorname" class="form-control" class="directorsReqToggle" required></td><td><a href="#" onclick="removeCurrentRow(this);"><img class="trash" src="/dashboard/assets/trash.jpg"></a></td></tr>';
+        $('#directors-table tbody').append(newRow);
+    }
+
+    function addBeneficialOwnerRow() {
+        var newRow = '<tr><td class="tg"><input type="text" name="stakeholdername" class="form-control" class="stakeholderReqToggle" required></td><td><a href="#" onclick="removeCurrentRow(this);"><img class="trash" src="/dashboard/assets/trash.jpg"></a></td></tr>';
+        $('#stakeholders tbody').append(newRow);
+    }
+    function checkifdPaid()
+    {
+        return false;
+    }
+    function getInvoice() {
+
+        if (isRequiredCompleted()) {
+            $.ajax({
+                type: 'POST',
+                url: '/Account/GenerateInvoice',
+                data: '{invoiceType: 2, invoiceLevel: "' + $("input[name='trustlevel']:checked").val() + '"}',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+
+                    window.open(data.invoiceURL, '_blank');
+                    checkPaiementReceive(data.invoiceId);
+
+
+                },
+                error: function (xhr) {
+                    alert('error');
+                    alert(xhr.responseText);
+                }
+            });
+        } else {
+        $("#submitter").click();
+        }
+    }
+
+    function checkPaiementReceive(invoiceId) {
+
+        setTimeout(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/Account/checkPaiementReceive',
+                data: '{invoiceId: "' + invoiceId + '"}',
+                contentType: 'application/json; charset=utf-8',
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    //$('#EntityDocumentList').html(data);
+                    if (data.isPaid == true) {
+                        $("#finalinvoiceId").val(invoiceId);
+                        $("#submitter").click();
+                    } else {
+                        checkPaiementReceive(invoiceId);
+                    }
+                },
+                error: function (xhr) {
+                    alert('error');
+                    alert(xhr.responseText);
+                }
+            });
+        }, 5000);
+
+    }
+
+    function isRequiredCompleted() {
+        var form = document.getElementById('entity-trust-level');
+        for (var i = 0; i < form.elements.length; i++) {
+            if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
+                
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    
+    function setRequiredDocument() {
+    
+
+        var std = {};
+        std.entityTypeId = $('#selectedEntityType').val();
+        std.EntityTrustLevelId = $("input[name='trustlevel']:checked").val();
+
+        switch (std.EntityTrustLevelId) {
+            case '2':
+                $('#directorstable').css('display', 'none');
+                $('#stakeholderstable').css('display', 'none');
+
+                $('.directorsReqToggle').prop('required', false);
+                $('.stakeholderReqToggle').prop('required', false);
+                break;
+            case '3':
+                $('#directorstable').css('display', '');
+                $('#stakeholderstable').css('display', 'none');
+
+                $('.directorsReqToggle').prop('required', true);
+                $('.stakeholderReqToggle').prop('required', false);
+                break;
+            case '4':
+                $('#directorstable').css('display', '');
+                $('#stakeholderstable').css('display', 'none');
+
+                $('.directorsReqToggle').prop('required', true);
+                $('.stakeholderReqToggle').prop('required', false);
+                break;
+            case '5':
+                $('#directorstable').css('display', '');
+                $('#stakeholderstable').css('display', '');
+
+                $('.directorsReqToggle').prop('required', true);
+                $('.stakeholderReqToggle').prop('required', true);
+                break;
+
+        }
+
+        $('#requestedTrustLevel').val(std.EntityTrustLevelId);
+
+        $.ajax({
+            type: 'POST',
+            url: '/Account/GetSelectedDocumentSet',
+            data: '{entityInformation: ' + JSON.stringify(std) + '}',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'html',
+            success: function (data) {
+                $('#EntityDocumentList').html(data);
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+
+    }
+
+    function getCountryList() {
+        $.ajax({
+            type: 'POST',
+            url: '/Account/GetCountryList',
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            dataType: 'html',
+            success: function (data) {
+                $("#entitycountry").html(data);
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+    function getStateList() {
+        $.ajax({
+            type: 'POST',
+            url: '/Account/GetStateList',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'html',
+            async: false,
+            data: '{CountryId: "' + $('#entitycountry').val() + '"}',
+            success: function (data) {
+                $("#province").html(data);
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+    }
+ $(function () {
+   $('#datetimepicker1').datetimepicker({
+        viewMode: 'days',
+        format: 'YYYY/MM/DD',
+        maxDate: 'now'
+    });
+
+    getCountryList();
+    $("#entitycountry").val('@Model.entityInformation.AdressList[0].Country');
+    getStateList();
+    $("#province").val('@Model.entityInformation.AdressList[0].ProvinceOrState');
+            });
+</script>

@@ -1,0 +1,262 @@
+﻿@model UpperityProfileManagement.UpperitySDK.GetEntityTypeListResponse
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upperity Entity Profile</title>
+    <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="~/Dashboard/assets/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <link href="~/Dashboard/assets/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Dashboard/assets/dash-styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/Dashboard/assets/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="profile">
+        <div class="container">
+            <div class="row">
+                <div id="logo" class="col-lg-4 col-sm-12"><img src="/dashboard/assets/U_OrangePetit.png"><h4>Create a entity</h4></div>
+            </div>
+            <div style="height:30px;"><a href="/Account/LogOut" style="float:right;">Log Out</a></div>  
+            <div id="nav">
+                    <ul>
+                        <li><a  href="/Account/UpperityUserProfile">Personal Profile</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                        <li><a  href="/Account/ManageEntity">Entity</a></li>
+                        <li><a class="active" href="/Account/RenderCreateEntity">Create Entity</a></li>
+                        <li><a href="/Account/RenderPartnerApiKeyList">Become a partner</a></li>
+                        <li><a class="hide" href="">Tab</a></li>
+                    </ul>
+                </div>
+            <!--TAB1-->
+            <!--Section1-->
+            <div class="tab-content">
+                <!--Section1-->
+                <div id="general" class="tab-pane active">
+                    <form id="genral-info" class="form" action="/Account/CreateNewEntityProfile" method="post">
+                    <div class="row profile-info">
+                    <!--Line0-->
+                        <div class="col-lg-12 col-sm-12">
+                            <!--Line1-->
+                            <div class="row">
+                                <div class="col-lg-10 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="entityname" class="text-info">Entity Name</label><br>
+                                    <input type="text" name="entityname" id="entityname" class="form-control" value="" required>
+                                   </div>
+                                </div>
+                               <div class="col-lg-2 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="language" class="text-info">Language</label><br>
+                                        <select class="mdb-select md-form" name="language">
+                                          <option value="1033" selected>English</option>
+                                          <option value="1036">French</option>
+                                          
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END Line1-->
+                            <!--Line2-->
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12">
+                                   <br /> <label for="country" class="text-info">Entity Type</label><br>
+                                <select class="" id="selectedEntityType" name="selectedEntityType" onchange="setRequiredDocument();"  required>
+                                    @foreach (var entityType in Model.entityTypeList)
+                                    {
+                                         <option value="@entityType.entityTypeId">@entityType.entityTypeName</option>
+                                    }
+                                </select>
+                                </div>
+                                <div class="col-lg-4 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="entityjuridiction" class="text-info">Entity jurisdiction</label><br>
+                                    <input type="text" name="entityjuridiction" id="entityjuridiction" class="form-control" value=""  required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="date-incorporation" class="text-info">Date of incorporation</label><br>
+                                    <input type='text' class="form-control" name="incorporationDate" id='datetimepicker1' value=""  required /><i class="fa fa-calendar uppercalendar" ></i>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!--END Line2-->                    
+                            <!--Line3-->
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="buildingname" class="text-info">Building Name</label><br>
+                                    <input type="text" name="buildingname" id="buildingname" class="form-control" value="">
+                                   </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="buildingnumber" class="text-info">Building Number</label><br>
+                                    <input type="text" name="buildingnumber" id="buildingnumber" class="form-control" value="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="streetname" class="text-info">Street Name</label><br>
+                                    <input type="text" name="streetname" id="streetname" class="form-control" value="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="unitnumber" class="text-info">Unit Number (e.g. Office/Suite/Floor)</label</label><br>
+                                    <input type="text" name="unitnumber" id="unitnumber" class="form-control" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END Line3-->   
+                            <!--Line4-->
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="pobox" class="text-info">PO Box</label><br>
+                                    <input type="text" name="pobox" id="pobox" class="form-control" value="">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="country" class="text-info">Country</label><br>
+                                        <select class="mdb-select md-form" name="entitycountry" id="entitycountry" onchange="getStateList();">
+                                          <option value="" disabled selected>---</option>
+                                          <option value="1">Canada</option>
+                                          <option value="2">Usa</option>
+                                        </select>
+                                     </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="province" class="text-info">Province/State</label><br>
+                                        <select class="mdb-select md-form" name="province" id="province">
+                                          <option value="" disabled selected>---</option>
+                                          <option value="1">cella</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="city" class="text-info">City</label><br>
+                                    <input type="text" name="city" id="city" class="form-control" value="">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!--END Line4-->
+                            <!--Line5-->
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="suburb" class="text-info">Suburb</label><br>
+                                    <input type="text" name="suburb" id="suburb" class="form-control" value="">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    <label for="postalcode" class="text-info">Postal / ZIP Code</label><br>
+                                    <input type="text" name="postalcode" id="postalcode" class="form-control" value="">
+                                    </div>
+                                </div>
+                                 <div class="col-lg-3 col-sm-12">
+                                    <div class="form-group">
+                                    <label for="phonenumber" class="text-info">Phone Number</label><br>
+                                    <input type="text" name="phonenumber" id="phonenumber" class="form-control" value="" required>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END Line5-->
+                        </div>
+                        <div class="col-md-12 text-center text-info high">
+			<span styule="float:right;"><input style="vertical-align: baseline;" type="checkbox" name="TCCheck" id="TCCheck" onclick="toggleAccept();" />  I have read and agree to be bound by the <a href="http://www.upperity.com/termofuse" target="_blank">Terms of Use</a></span>
+		    </div>
+                        <div class="form-group col-12 text-right">
+                        <input type="submit" name="submit" class="btn btn-dark btn-info btn-lg text-right" value="Cancel">
+                        <input type="submit" name="submit" id="submitter" class="btn btn-orange btn-info btn-lg text-right" value="Create" disabled>
+                    </div>
+                    </form>
+                    </div>
+                     <!--Section2-->
+                    
+
+            <!--END section2-->
+                    
+                </div>
+
+                <!--END section2-->
+            </div>
+        </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    function toggleAccept() {
+        if (document.getElementById("TCCheck").checked) {
+            document.getElementById("submitter").disabled = false;
+        } else {
+            document.getElementById("submitter").disabled = true;
+        }
+    }
+
+    function getCountryList() {
+        $.ajax({
+            type: 'POST',
+            url: '/Account/GetCountryList',
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            dataType: 'html',
+            success: function (data) {
+                $("#entitycountry").html(data);
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+    function getStateList() {
+        $.ajax({
+            type: 'POST',
+            url: '/Account/GetStateList',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'html',
+            async: false,
+            data: '{CountryId: "' + $('#entitycountry').val() + '"}',
+            success: function (data) {
+                $("#province").html(data);
+            },
+            error: function (xhr) {
+                alert('error');
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+    
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            viewMode: 'days',
+            format: 'YYYY/MM/DD',
+            maxDate: 'now'
+        });
+
+        getCountryList();
+        $("#entitycountry").val('40');
+        getStateList();
+    });
+</script>
